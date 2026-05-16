@@ -1,115 +1,144 @@
-// ── Custom Cursor ──
-const cursor = document.querySelector('.cursor');
-const cursorFollower = document.querySelector('.cursor-follower');
-let mouseX = 0, mouseY = 0, followerX = 0, followerY = 0;
+/* olatunji.franklin — portfolio v3.2
+   vanilla js · no deps · respects prefers-reduced-motion */
 
-document.addEventListener('mousemove', (e) => {
-  mouseX = e.clientX; mouseY = e.clientY;
-  if (cursor) { cursor.style.left = mouseX + 'px'; cursor.style.top = mouseY + 'px'; }
-});
+(() => {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function animateFollower() {
-  followerX += (mouseX - followerX) * 0.1;
-  followerY += (mouseY - followerY) * 0.1;
-  if (cursorFollower) { cursorFollower.style.left = followerX + 'px'; cursorFollower.style.top = followerY + 'px'; }
-  requestAnimationFrame(animateFollower);
-}
-animateFollower();
+  const $ = (sel, root = document) => root.querySelector(sel);
+  const $$ = (sel, root = document) => Array.from(root.querySelectorAll(sel));
 
-// ── Mobile Nav Toggle ──
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-if (navToggle && navLinks) {
-  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
-  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
-}
+  const header = $('#site-header');
+  const menuToggle = $('#menu-toggle');
+  const mobileMenu = $('#mobile-menu');
+  const navLinks = $$('.nav-desktop a');
+  const sections = $$('main section[id]');
 
-// ── Smooth Scrolling ──
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
+  /* ---------- header scroll state ---------- */
+  let lastY = 0;
+  const onScroll = () => {
+    const y = window.scrollY;
+    if (header) header.classList.toggle('scrolled', y > 8);
+    lastY = y;
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-// ── Scroll Reveal ──
-const revealElements = document.querySelectorAll('.reveal');
-const revealOnScroll = () => {
-  const windowHeight = window.innerHeight;
-  revealElements.forEach(el => {
-    if (el.getBoundingClientRect().top < windowHeight - 80) el.classList.add('active');
-  });
-};
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll();
+  /* ---------- reveal on scroll ---------- */
+  const revealTargets = $$('.section, .hero, .metrics-strip, .work-item, .extra-link, .log-row');
+  revealTargets.forEach(el => el.classList.add('reveal'));
 
-// ── Project Card Cursor Effect ──
-document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mouseenter', () => { if (cursor) { cursor.style.width = '55px'; cursor.style.height = '55px'; } });
-  card.addEventListener('mouseleave', () => { if (cursor) { cursor.style.width = '20px'; cursor.style.height = '20px'; } });
-});
+  if (reduceMotion) {
+    revealTargets.forEach(el => el.classList.add('visible'));
+  } else {
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    revealTargets.forEach(el => io.observe(el));
+  }
 
-// ── Stat Counter Animation ──
-const wrapStatElements = () => {
-  document.querySelectorAll('.stat-number').forEach(el => {
-    const text = el.dataset.original || el.textContent.trim();
-    const m = text.match(/^([^0-9]*)([0-9.,]+)(.*)$/);
-    if (m) {
-      el.dataset.original = text;
-      el.dataset.prefix = m[1];
-      el.dataset.value = m[2];
-      el.dataset.suffix = m[3];
-      el.innerHTML = `<span class="stat-prefix">${m[1]}</span><span class="stat-value">${m[2]}</span><span class="stat-suffix">${m[3]}</span>`;
+  /* ---------- counters in metrics strip ---------- */
+  const animateCount = (el) => {
+    const target = parseFloat(el.dataset.count);
+    if (isNaN(target)) return;
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.dataset.prefix || '';
+    const decimals = (el.dataset.count.split('.')[1] || '').length;
+    const duration = 1200;
+    const start = performance.now();
+
+    if (reduceMotion) {
+      el.textContent = `${prefix}${target.toFixed(decimals)}${suffix}`;
+      return;
     }
-  });
-};
 
-const animateCounter = (element) => {
-  const original = element.dataset.original || element.textContent.trim();
-  const valueStr = element.dataset.value || '';
-  const suffix = element.dataset.suffix || '';
-  const prefix = element.dataset.prefix || '';
-  const isDecimal = valueStr.includes('.');
-  const numericValue = parseFloat(valueStr.replace(/,/g, ''));
-  if (isNaN(numericValue)) return;
+    const tick = (now) => {
+      const p = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      const v = target * eased;
+      el.textContent = `${prefix}${v.toFixed(decimals)}${suffix}`;
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  };
 
-  const duration = 2000, steps = 60;
-  const increment = numericValue / steps;
-  let current = 0;
-  const valueSpan = element.querySelector('.stat-value');
-  if (!valueSpan) return;
+  const metricsSection = $('.metrics-strip');
+  if (metricsSection) {
+    const mo = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          $$('.metric-num[data-count]', entry.target).forEach(animateCount);
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    mo.observe(metricsSection);
+  }
 
-  const timer = setInterval(() => {
-    current += increment;
-    if (current >= numericValue) { current = numericValue; clearInterval(timer); }
-    valueSpan.textContent = isDecimal ? current.toFixed(2) : Math.floor(current).toLocaleString();
-  }, duration / steps);
-};
-
-wrapStatElements();
-const statsGrid = document.querySelector('.stats-grid');
-if (statsGrid) {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        document.querySelectorAll('.stat-number').forEach(el => animateCounter(el));
-        observer.unobserve(entry.target);
-      }
+  /* ---------- active nav highlight ---------- */
+  const setActiveNav = () => {
+    const offset = window.innerHeight * 0.35;
+    let currentId = '';
+    sections.forEach(sec => {
+      if (sec.getBoundingClientRect().top <= offset) currentId = sec.id;
     });
-  }, { threshold: 0.4 });
-  observer.observe(statsGrid);
-}
+    navLinks.forEach(link => {
+      const href = link.getAttribute('href');
+      link.classList.toggle('active', href === `#${currentId}`);
+    });
+  };
+  window.addEventListener('scroll', setActiveNav, { passive: true });
+  setActiveNav();
 
-// ── Active Nav Highlight on Scroll ──
-const sections = document.querySelectorAll('section[id]');
-const navItems = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let current = '';
-  sections.forEach(section => {
-    if (window.scrollY >= section.offsetTop - 200) current = section.getAttribute('id');
+  /* ---------- mobile menu ---------- */
+  const closeMenu = () => {
+    document.body.classList.remove('menu-open');
+    if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+    if (mobileMenu) mobileMenu.setAttribute('aria-hidden', 'true');
+  };
+
+  if (menuToggle && mobileMenu) {
+    menuToggle.addEventListener('click', () => {
+      const open = document.body.classList.toggle('menu-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      mobileMenu.setAttribute('aria-hidden', String(!open));
+    });
+    $$('a', mobileMenu).forEach(a => a.addEventListener('click', closeMenu));
+  }
+
+  /* ---------- smooth scroll for in-page anchors ---------- */
+  $$('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const targetId = a.getAttribute('href');
+      if (!targetId || targetId === '#') return;
+      const target = $(targetId);
+      if (!target) return;
+      e.preventDefault();
+      closeMenu();
+      target.scrollIntoView({
+        behavior: reduceMotion ? 'auto' : 'smooth',
+        block: 'start'
+      });
+    });
   });
-  navItems.forEach(a => {
-    a.style.color = a.getAttribute('href') === '#' + current ? 'var(--primary)' : '';
-  });
-});
+
+  /* ---------- signature interaction:
+     hovering hero-card briefly highlights matching live-list link
+     (subtle, single instance) ---------- */
+  const card = $('.hero-card');
+  if (card && !reduceMotion) {
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const x = ((e.clientX - r.left) / r.width - 0.5) * 4;
+      const y = ((e.clientY - r.top) / r.height - 0.5) * 4;
+      card.style.transform = `translateY(-12px) rotateX(${-y}deg) rotateY(${x}deg)`;
+    });
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'translateY(-12px)';
+    });
+  }
+})();
