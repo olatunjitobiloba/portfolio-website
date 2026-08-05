@@ -1,5 +1,5 @@
 /* ============================================================
-   olatunji.franklin — portfolio v3.2
+   oluwatobiloba.olatunji — portfolio
    blend: 60% linear · 25% vercel · 15% stripe
    8px grid · mobile-first · prefers-reduced-motion respected
    ============================================================ */
@@ -143,6 +143,7 @@ button { font: inherit; cursor: pointer; }
 }
 .nav-desktop a:hover,
 .nav-desktop a.active { color: var(--text); }
+.nav-desktop a[download] { color: var(--accent); }
 
 .header-meta {
   display: flex; align-items: center;
@@ -194,12 +195,14 @@ body.menu-open .menu-toggle span:nth-child(2) {
   background: rgba(10,10,11,0.96);
   backdrop-filter: blur(16px);
   padding: 96px var(--s-3) var(--s-3);
-  opacity: 0; pointer-events: none;
-  transition: opacity var(--dur) var(--ease);
+  opacity: 0; pointer-events: none; visibility: hidden;
+  transition: opacity var(--dur) var(--ease), visibility 0s linear var(--dur);
 }
 body.menu-open .mobile-menu {
-  opacity: 1; pointer-events: auto;
+  opacity: 1; pointer-events: auto; visibility: visible;
+  transition-delay: 0s;
 }
+body.menu-open { overflow: hidden; }
 .mobile-menu nav {
   display: flex; flex-direction: column;
   gap: var(--s-3);

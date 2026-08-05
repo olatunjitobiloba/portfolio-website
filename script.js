@@ -1,4 +1,4 @@
-/* olatunji.franklin — portfolio v3.2
+/* oluwatobiloba.olatunji — portfolio
    vanilla js · no deps · respects prefers-reduced-motion */
 
 (() => {
@@ -106,8 +106,32 @@
       const open = document.body.classList.toggle('menu-open');
       menuToggle.setAttribute('aria-expanded', String(open));
       mobileMenu.setAttribute('aria-hidden', String(!open));
+      if (open) {
+        const firstMenuLink = $('a', mobileMenu);
+        if (firstMenuLink) firstMenuLink.focus();
+      }
     });
     $$('a', mobileMenu).forEach(a => a.addEventListener('click', closeMenu));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && document.body.classList.contains('menu-open')) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    });
+
+    const desktopViewport = window.matchMedia('(min-width: 641px)');
+    const closeMenuAtDesktop = (event) => {
+      if (event.matches && document.body.classList.contains('menu-open')) {
+        closeMenu();
+        menuToggle.focus();
+      }
+    };
+
+    if (desktopViewport.addEventListener) {
+      desktopViewport.addEventListener('change', closeMenuAtDesktop);
+    } else {
+      desktopViewport.addListener(closeMenuAtDesktop);
+    }
   }
 
   /* ---------- smooth scroll for in-page anchors ---------- */
