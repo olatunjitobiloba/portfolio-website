@@ -3,422 +3,356 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Oluwatobiloba Olatunji: Software Engineering &amp; Applied AI</title>
-<meta name="description" content="Portfolio of Oluwatobiloba Olatunji, a Computer Engineering undergraduate building tested Python APIs, AI-enabled applications, event platforms, and embedded systems.">
-<meta name="theme-color" content="#0a0a0b">
+<title>Oluwatobiloba Olatunji | Software Engineer</title>
+<meta name="description" content="Portfolio of Oluwatobiloba Olatunji. Computer Engineering student building tested Python APIs, AI applications, event platforms, and embedded systems in Lagos.">
+<meta name="theme-color" content="#0a0f0d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- ============= INTRO OVERLAY ============= -->
+<div class="intro-overlay" id="intro-overlay">
+  <div class="intro-word-wrapper">
+    <span class="intro-word" id="intro-w0">build<span class="intro-dot">.</span></span>
+    <span class="intro-word" id="intro-w1">test<span class="intro-dot">.</span></span>
+    <span class="intro-word" id="intro-w2">ship<span class="intro-dot">.</span></span>
+  </div>
+  <span class="intro-skip">click anywhere to skip</span>
+</div>
+
 <a href="#main" class="skip-link">Skip to content</a>
 
-<header id="site-header">
+<!-- ============= HEADER ============= -->
+<header class="site-header" id="site-header">
   <div class="container header-inner">
-    <a href="#home" class="brand" aria-label="Home">
-      <span class="brand-glyph" aria-hidden="true">◢</span>
-      <span class="brand-name">oluwatobiloba.olatunji</span>
-    </a>
-    <nav class="nav-desktop" aria-label="Primary">
-      <a href="#work">work</a>
-      <a href="#stack">stack</a>
-      <a href="#log">log</a>
-      <a href="#about">about</a>
-      <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf">cv</a>
+    <a href="#hero" class="brand">Oluwatobiloba Olatunji</a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#work">Work</a>
+      <a href="#log">Experience</a>
+      <a href="#about">About</a>
+      <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download>CV</a>
     </nav>
-    <div class="header-meta">
-      <span class="status-pill" aria-label="Availability">
-        <span class="status-dot"></span>
-        <span>open to roles</span>
-      </span>
-      <button class="menu-toggle" id="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menu">
-        <span></span><span></span>
-      </button>
-    </div>
+    <button class="menu-toggle" id="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menu">
+      <span></span><span></span>
+    </button>
   </div>
 </header>
 
+<!-- ============= MOBILE MENU ============= -->
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-  <nav>
-    <a href="#work">work</a>
-    <a href="#stack">stack</a>
-    <a href="#log">log</a>
-    <a href="#about">about</a>
-    <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf">download cv ↓</a>
-    <a href="mailto:olatunjitobiloba05@gmail.com" class="mobile-cta">olatunjitobiloba05@gmail.com →</a>
-  </nav>
+  <a href="#work">Work</a>
+  <a href="#log">Experience</a>
+  <a href="#about">About</a>
+  <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download>Download CV</a>
+  <div class="mobile-meta">
+    <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer">GitHub</a>
+    <a href="https://www.linkedin.com/in/olatunji-oluwatobiloba-186659291/" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="mailto:olatunjitobiloba05@gmail.com">Email</a>
+  </div>
 </div>
 
+<!-- ============= MAIN ============= -->
 <main id="main">
 
   <!-- ============= HERO ============= -->
-  <section id="home" class="hero">
+  <section id="hero" class="hero">
     <div class="container">
-      <div class="hero-meta">
-        <span class="mono-tag">software engineering · applied ai · embedded systems</span>
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-label reveal">
+            <span>Oluwatobiloba Olatunji</span>
+            <span>Software Engineer</span>
+          </div>
+          <h1 class="hero-name" id="hero-name">
+            Building things<br>that work<br>and proving it.
+          </h1>
+          <p class="hero-intro reveal reveal-delay-2">
+            Computer Engineering student at Covenant University, building tested Python APIs, AI applications, and event platforms in Lagos.
+          </p>
+          <div class="hero-actions reveal reveal-delay-3">
+            <a href="#work" class="btn-primary">View work &rarr;</a>
+            <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download class="btn-ghost">Download CV &darr;</a>
+          </div>
+        </div>
+        <div class="hero-photo reveal reveal-delay-1">
+          <img src="images/profile.jpg" alt="Oluwatobiloba Olatunji" width="480" height="640">
+        </div>
+      </div>
+      <div class="hero-bottom reveal reveal-delay-3">
+        <div class="social-row">
+          <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/olatunji-oluwatobiloba-186659291/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:olatunjitobiloba05@gmail.com" aria-label="Email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          </a>
+        </div>
+        <div style="display:flex;align-items:center;gap:16px;">
+          <span class="status-text">
+            <span class="status-dot"></span>
+            Open to roles
+          </span>
+          <button class="ask-tobi-btn" id="ask-tobi-trigger" aria-label="Ask Tobi">
+            <kbd>&#8984;K</kbd>
+            <span>Ask Tobi</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= SELECTED WORK ============= -->
+  <section id="work" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Selected Work</h2>
       </div>
 
-      <h1 class="hero-title">
-        <span class="line">Building reliable software</span>
-        <span class="line">from APIs to <em>applied AI.</em></span>
-      </h1>
+      <!-- Abraham-style asymmetric grid: 7/5 split -->
+      <div class="projects-grid">
 
-      <div class="hero-grid">
-        <div class="hero-bio">
-          <p>
-            Computer Engineering undergraduate in Lagos building tested Python APIs,
-            AI-enabled web applications, event platforms, and embedded systems.
-            I care about clear engineering and measurable results.
-          </p>
-          <div class="hero-actions">
-            <a href="#work" class="btn-link">view work <span aria-hidden="true">→</span></a>
-            <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" class="btn-link">download cv <span aria-hidden="true">↓</span></a>
-            <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer" class="btn-link muted">github ↗</a>
-            <a href="mailto:olatunjitobiloba05@gmail.com" class="btn-link muted">email ↗</a>
+        <!-- Left: Large featured card (FocusPilot) -->
+        <div class="project-card-lg reveal-scale">
+          <div class="project-card">
+            <a href="https://focuspilot.vercel.app" target="_blank" rel="noreferrer" class="project-card-link">
+              <img src="images/focuspilot.png" alt="FocusPilot dashboard showing live session snapshot with context detection, risk predictor, and agent action features" loading="lazy">
+              <div class="project-overlay"></div>
+              <div class="project-card-info">
+                <span class="project-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+                <h3>FocusPilot</h3>
+                <p>Productivity platform combining a React dashboard, FastAPI backend, and Chrome extension with a four-factor distraction scorer.</p>
+              </div>
+            </a>
           </div>
         </div>
 
-        <aside class="hero-card" aria-label="Selected project evidence">
-          <div class="card-head">
-            <span class="mono-tag">project_evidence.json</span>
-            <span class="card-pulse" aria-hidden="true"></span>
+        <!-- Right: Stacked smaller cards -->
+        <div class="project-stack">
+          <div class="project-card reveal-right">
+            <a href="https://loan-predictor-api-91xu.onrender.com/app" target="_blank" rel="noreferrer" class="project-card-link">
+              <img src="images/loan-api.png" alt="Loan Prediction API showing 88.62% accuracy and test coverage metrics" loading="lazy">
+              <div class="project-overlay"></div>
+              <div class="project-card-info">
+                <span class="project-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+                <h3>Loan Prediction API</h3>
+                <p>Flask API serving loan-approval predictions. Random Forest classifier, 88.62% accuracy, pytest coverage.</p>
+              </div>
+            </a>
           </div>
-          <ul class="live-list">
-            <li>
-              <a href="https://loan-predictor-api-91xu.onrender.com/app" target="_blank" rel="noreferrer">
-                <span class="live-name">loan-predictor-api</span>
-                <span class="live-stat">88.62% accuracy</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://focuspilot.vercel.app" target="_blank" rel="noreferrer">
-                <span class="live-name">focuspilot</span>
-                <span class="live-stat">49 tests</span>
-              </a>
-            </li>
-            <li>
-              <a href="https://finsightng.vercel.app/" target="_blank" rel="noreferrer">
-                <span class="live-name">finsight-ai</span>
-                <span class="live-stat">hackathon build</span>
-              </a>
-            </li>
-          </ul>
-          <div class="card-foot">
-            <span class="mono-tag dim">live demos · public code · documented results</span>
+          <div class="project-card reveal-right" style="transition-delay: 0.15s;">
+            <a href="https://finsightng.vercel.app/" target="_blank" rel="noreferrer" class="project-card-link">
+              <img src="images/finsight.png" alt="FinSight AI landing page with financial intelligence features" loading="lazy">
+              <div class="project-overlay"></div>
+              <div class="project-card-info">
+                <span class="project-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+                <h3>FinSight AI</h3>
+                <p>Hackathon financial intelligence platform for predictions and spending analysis.</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second row: FedRec full width -->
+      <div class="projects-row">
+        <div class="project-card reveal-scale" style="transition-delay: 0.1s;">
+          <a href="https://github.com/olatunjitobiloba/FedRec-Privacy-First-Recommendation-Engine" target="_blank" rel="noreferrer" class="project-card-link">
+            <img src="images/fedrec.png" alt="FedRec privacy-first recommendation engine dashboard" loading="lazy">
+            <div class="project-overlay"></div>
+            <div class="project-card-info">
+              <span class="project-arrow" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></span>
+              <h3>FedRec</h3>
+              <p>Federated recommendation research with privacy-first architecture and differential privacy controls.</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- More projects (text-only) -->
+      <div class="more-projects reveal">
+        <a href="https://heroesconference26.vercel.app" target="_blank" rel="noreferrer" class="more-project-link">
+          <div>
+            <span class="mp-name">Heroes Conference '26</span>
+            <span class="mp-desc">Live raffle platform with real-time polling and protected admin controls</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+        <a href="https://github.com/olatunjitobiloba/Speed-Detector" target="_blank" rel="noreferrer" class="more-project-link">
+          <div>
+            <span class="mp-name">IoT Vehicle Speed Detector</span>
+            <span class="mp-desc">Embedded prototype with IR sensors, 2nd place in IoT competition</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+      </div>
+
+      <!-- Big CTA (like Abraham's "See all my projects") -->
+      <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer" class="big-cta reveal">
+        <div class="big-cta-inner">
+          <h3>See all my projects</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </div>
+        <div class="cta-line"></div>
+      </a>
+    </div>
+  </section>
+
+  <!-- ============= EXPERIENCE ============= -->
+  <section id="log" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Experience</h2>
+      </div>
+      <div class="log-list">
+        <div class="log-entry reveal">
+          <span class="log-date">Aug 2026 – Present</span>
+          <div class="log-body">
+            <h3>Information Technology Intern <span class="log-company">· Union Bank of Nigeria</span></h3>
+            <p>Selected for a two-month placement in the Information Technology Department, applying computing knowledge in an enterprise environment.</p>
+          </div>
+        </div>
+        <div class="log-entry reveal">
+          <span class="log-date">Sep 2025 – Jul 2026</span>
+          <div class="log-body">
+            <h3>Graphics Head <span class="log-company">· Covenant University Technical Crew</span></h3>
+            <p>Led high-pressure visual production for major programmes, trained team members, and documented operating standards.</p>
+          </div>
+        </div>
+        <div class="log-entry reveal">
+          <span class="log-date">Jun 2025 – Aug 2025</span>
+          <div class="log-body">
+            <h3>Engineering Design Intern (SWEP) <span class="log-company">· Covenant University</span></h3>
+            <p>Designed a biodigester for sustainable waste management. Modeled in Fusion 360 and AutoCAD, then ran iterative efficiency analysis on the output.</p>
+          </div>
+        </div>
+        <div class="log-entry reveal">
+          <span class="log-date">Sep 2024 – Jul 2025</span>
+          <div class="log-body">
+            <h3>In-Charge, 100 &amp; 200 Level <span class="log-company">· Covenant University Technical Crew</span></h3>
+            <p>Coordinated and mentored 150+ students, onboarded 50+ members, and created a 16-step development framework.</p>
+          </div>
+        </div>
+        <div class="log-entry reveal">
+          <span class="log-date">Aug 2024 – Sep 2024</span>
+          <div class="log-body">
+            <h3>Design Engineering Intern <span class="log-company">· HVAC Solutions Nigeria</span></h3>
+            <p>HVAC system design and analysis. AutoCAD drawings, schematics, multidisciplinary project execution.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============= ABOUT ============= -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>About</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <h2>Learning by building, testing, and explaining the trade-offs.</h2>
+          <p>
+            I'm a Computer Engineering student at Covenant University (CGPA 4.86/5.0, expected 2028). I build Python APIs, AI-enabled applications, event platforms, and embedded systems while strengthening my full-stack foundations.
+          </p>
+          <p>
+            Most of my progress has come through self-directed projects: define the problem, build a small system, test it, document the result, and improve what failed.
+          </p>
+          <div class="stack-inline" style="margin-top: 32px;">
+            <strong>Languages &amp; Frameworks</strong>
+            Python · FastAPI · Flask · JavaScript · React · REST APIs
+            <strong>Engineering &amp; Quality</strong>
+            pytest · Docker · Git · Postman · GitHub Actions · Technical Docs
+            <strong>AI, Data &amp; Hardware</strong>
+            scikit-learn · Pandas · NumPy · Supabase · SQLAlchemy · Microcontrollers · Fusion 360
+          </div>
+        </div>
+        <aside class="about-sidebar">
+          <div class="about-card reveal">
+            <h4>Education</h4>
+            <p class="card-title">B.Eng. Computer Engineering</p>
+            <p class="card-sub">Covenant University · Ota, Nigeria</p>
+            <p class="card-mono">2023 – 2028 · CGPA 4.86/5.0</p>
+            <hr>
+            <h4>Recognition</h4>
+            <p class="card-title">2nd Place — IoT Speed Detection Competition</p>
+            <hr>
+            <h4>Coursework</h4>
+            <p class="coursework">Intelligent Systems · Software Architecture · Data Structures &amp; Algorithms · Linear Algebra · Probability · Statistical Methods</p>
           </div>
         </aside>
       </div>
     </div>
   </section>
 
-  <!-- ============= METRICS STRIP ============= -->
-  <section class="metrics-strip" aria-label="Key metrics">
-    <div class="container">
-      <div class="metrics-row">
-        <div class="metric">
-          <span class="metric-num" data-count="49">49</span>
-          <span class="metric-label">automated tests · FocusPilot</span>
-        </div>
-        <div class="metric metric-accent">
-          <span class="metric-num" data-count="88.62" data-suffix="%">88.62%</span>
-          <span class="metric-label">validation accuracy · loan api</span>
-        </div>
-        <div class="metric">
-          <span class="metric-num" data-count="83" data-prefix="~" data-suffix="%">~83%</span>
-          <span class="metric-label">test coverage · loan api</span>
-        </div>
-        <div class="metric">
-          <span class="metric-num" data-count="2" data-suffix="nd">2nd</span>
-          <span class="metric-label">place · iot competition</span>
-        </div>
-        <div class="metric">
-          <span class="metric-num" data-count="4.86">4.86</span>
-          <span class="metric-label">cgpa · covenant university</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============= WORK / PROJECTS ============= -->
-  <section id="work" class="section">
-    <div class="container">
-      <header class="section-head">
-        <span class="mono-tag">01 · selected work</span>
-        <h2>Selected engineering work.</h2>
-      </header>
-
-      <ol class="work-list" role="list">
-
-        <!-- FocusPilot -->
-        <li class="work-item">
-          <div class="work-index"><span class="mono-tag">001</span></div>
-          <article class="work-body">
-            <header class="work-header">
-              <h3>FocusPilot: AI-Powered Productivity System</h3>
-              <span class="work-tag">full stack · browser extension · applied ml</span>
-            </header>
-            <p class="work-desc">
-              Productivity platform combining a React dashboard, FastAPI backend, and Chrome
-              extension. A four-factor distraction scorer uses browsing signals to support
-              personalized focus sessions and adaptive site blocking.
-            </p>
-            <dl class="work-stats">
-              <div><dt>tests</dt><dd>49</dd></div>
-              <div><dt>scorer</dt><dd>4 factors</dd></div>
-              <div><dt>clients</dt><dd>web + ext</dd></div>
-              <div><dt>status</dt><dd>live</dd></div>
-            </dl>
-            <footer class="work-foot">
-              <span class="stack-line">FastAPI · React · Supabase · Chrome MV3 · pytest</span>
-              <span class="work-links">
-                <a href="https://focuspilot.vercel.app" target="_blank" rel="noreferrer">live ↗</a>
-                <a href="https://github.com/olatunjitobiloba/FocusPilot" target="_blank" rel="noreferrer">code ↗</a>
-              </span>
-            </footer>
-          </article>
-        </li>
-
-        <!-- Loan API -->
-        <li class="work-item flip">
-          <div class="work-index"><span class="mono-tag">002</span></div>
-          <article class="work-body">
-            <header class="work-header">
-              <h3>Loan Prediction API: Tested Credit Scoring</h3>
-              <span class="work-tag">python api · classification · testing</span>
-            </header>
-            <p class="work-desc">
-              Flask API serving loan-approval predictions with confidence scoring, validation,
-              rate limiting, and prediction history. Four models were compared before selecting
-              a Random Forest classifier with 88.62% validation accuracy.
-            </p>
-            <dl class="work-stats">
-              <div><dt>accuracy</dt><dd>88.62%</dd></div>
-              <div><dt>coverage</dt><dd>~83%</dd></div>
-              <div><dt>models</dt><dd>4 compared</dd></div>
-              <div><dt>article</dt><dd>3,000 words</dd></div>
-            </dl>
-            <footer class="work-foot">
-              <span class="stack-line">Python · Flask · scikit-learn · SQLAlchemy · pytest</span>
-              <span class="work-links">
-                <a href="https://loan-predictor-api-91xu.onrender.com/app" target="_blank" rel="noreferrer">live ↗</a>
-                <a href="https://github.com/olatunjitobiloba/loan-predictor-api" target="_blank" rel="noreferrer">code ↗</a>
-              </span>
-            </footer>
-          </article>
-        </li>
-
-        <!-- Heroes Conference raffle -->
-        <li class="work-item">
-          <div class="work-index"><span class="mono-tag">003</span></div>
-          <article class="work-body">
-            <header class="work-header">
-              <h3>Heroes Conference '26: Live Raffle Platform</h3>
-              <span class="work-tag">live event · protected admin · real-time polling</span>
-            </header>
-            <p class="work-desc">
-              Audience and admin experiences built for a live conference raffle. The audience
-              page polls the API and animates each draw, while protected controls let authorized
-              operators draw winners, reset the session, and adjust event settings.
-            </p>
-            <footer class="work-foot">
-              <span class="stack-line">JavaScript · serverless API · Vercel</span>
-              <span class="work-links">
-                <a href="https://heroesconference26.vercel.app" target="_blank" rel="noreferrer">live ↗</a>
-                <a href="https://github.com/olatunjitobiloba/heroesconference26" target="_blank" rel="noreferrer">code ↗</a>
-              </span>
-            </footer>
-          </article>
-        </li>
-
-        <!-- IoT speed detector -->
-        <li class="work-item flip">
-          <div class="work-index"><span class="mono-tag">004</span></div>
-          <article class="work-body">
-            <header class="work-header">
-              <h3>IoT Vehicle Speed Detector</h3>
-              <span class="work-tag">embedded systems · sensors · team project</span>
-            </header>
-            <p class="work-desc">
-              Embedded prototype using paired infrared sensors and a microcontroller to calculate
-              vehicle speed. The system displays measurements on an LCD and triggers an alarm when
-              a vehicle exceeds the configured limit; it placed second in an IoT competition.
-            </p>
-            <footer class="work-foot">
-              <span class="stack-line">Microcontroller · IR sensors · LCD · hardware integration</span>
-              <span class="work-links">
-                <a href="https://github.com/olatunjitobiloba/Speed-Detector" target="_blank" rel="noreferrer">project notes ↗</a>
-              </span>
-            </footer>
-          </article>
-        </li>
-
-      </ol>
-
-      <div class="work-extra">
-        <a href="https://github.com/olatunjitobiloba/FedRec-Privacy-First-Recommendation-Engine" target="_blank" rel="noreferrer" class="extra-link">
-          <span class="mono-tag">005</span>
-          <span class="extra-name">fedrec · federated recommendation research prototype</span>
-          <span class="extra-arrow">↗</span>
-        </a>
-        <a href="https://github.com/olatunjitobiloba/finsight-ai" target="_blank" rel="noreferrer" class="extra-link">
-          <span class="mono-tag">006</span>
-          <span class="extra-name">finsight-ai · hackathon financial intelligence platform</span>
-          <span class="extra-arrow">↗</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============= STACK ============= -->
-  <section id="stack" class="section section-alt">
-    <div class="container">
-      <header class="section-head">
-        <span class="mono-tag">02 · stack</span>
-        <h2>Tools I reach for, ranked by frequency.</h2>
-      </header>
-
-      <div class="stack-grid">
-        <div class="stack-col">
-          <h4>programming / backend</h4>
-          <ul class="stack-list">
-            <li>Python <span class="dim">· APIs, automation, data</span></li>
-            <li>FastAPI / Flask <span class="dim">· web backends</span></li>
-            <li>REST APIs <span class="dim">· contracts, validation</span></li>
-            <li>Git / GitHub <span class="dim">· version control</span></li>
-            <li>Docker <span class="dim">· reproducible delivery</span></li>
-            <li>API deployment <span class="dim">· Render, Vercel</span></li>
-          </ul>
-        </div>
-        <div class="stack-col">
-          <h4>engineering / quality</h4>
-          <ul class="stack-list">
-            <li>pytest <span class="dim">· automated testing</span></li>
-            <li>Coverage <span class="dim">· measurable confidence</span></li>
-            <li>Postman / Swagger <span class="dim">· API verification</span></li>
-            <li>Technical documentation <span class="dim">· decisions, setup</span></li>
-            <li>Input validation <span class="dim">· safer boundaries</span></li>
-            <li>GitHub Actions <span class="dim">· learning CI workflows</span></li>
-          </ul>
-        </div>
-        <div class="stack-col">
-          <h4>ai / data / hardware</h4>
-          <ul class="stack-list">
-            <li>scikit-learn <span class="dim">· ML fundamentals</span></li>
-            <li>Pandas / NumPy <span class="dim">· data analysis</span></li>
-            <li>Supabase / SQLAlchemy <span class="dim">· project databases</span></li>
-            <li>React / JavaScript <span class="dim">· project interfaces</span></li>
-            <li>Microcontrollers <span class="dim">· sensor integration</span></li>
-            <li>Fusion 360 / AutoCAD <span class="dim">· engineering design</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============= LOG / EXPERIENCE ============= -->
-  <section id="log" class="section">
-    <div class="container">
-      <header class="section-head">
-        <span class="mono-tag">03 · log</span>
-        <h2>Where I've shipped, taught, and broken things.</h2>
-      </header>
-
-      <ol class="log-list" role="list">
-        <li class="log-row">
-          <span class="log-date">2026.08 – present</span>
-          <div class="log-body">
-            <h3>Information Technology Intern <span class="dim">· Union Bank of Nigeria, Head Office</span></h3>
-            <p>Selected for a two-month placement in the Information Technology Department, applying computing knowledge in an enterprise environment.</p>
-          </div>
-        </li>
-        <li class="log-row">
-          <span class="log-date">2025.09 – 2026.07</span>
-          <div class="log-body">
-            <h3>Graphics Head <span class="dim">· Covenant University Technical Crew</span></h3>
-            <p>Led high-pressure visual production for major programmes, trained team members, and documented operating standards.</p>
-          </div>
-        </li>
-        <li class="log-row">
-          <span class="log-date">2025.06 – 2025.08</span>
-          <div class="log-body">
-            <h3>Engineering Design Intern (SWEP) <span class="dim">· Covenant University</span></h3>
-            <p>Designed a biodigester for sustainable waste management. Modeled in Fusion 360 and AutoCAD, then ran iterative efficiency analysis on the output.</p>
-          </div>
-        </li>
-        <li class="log-row">
-          <span class="log-date">2024.09 – 2025.07</span>
-          <div class="log-body">
-            <h3>In-Charge, 100 &amp; 200 Level <span class="dim">· Covenant University Technical Crew</span></h3>
-            <p>Coordinated and mentored 150+ students, onboarded 50+ members, and created a 16-step development framework.</p>
-          </div>
-        </li>
-        <li class="log-row">
-          <span class="log-date">2024.08 – 2024.09</span>
-          <div class="log-body">
-            <h3>Design Engineering Intern <span class="dim">· HVAC Solutions Nigeria</span></h3>
-            <p>HVAC system design and analysis. AutoCAD drawings, schematics, multidisciplinary project execution.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- ============= ABOUT / EDUCATION / CONTACT ============= -->
-  <section id="about" class="section section-alt">
-    <div class="container about-grid">
-      <div class="about-left">
-        <span class="mono-tag">04 · about</span>
-        <h2>Learning by building, testing, and explaining the trade-offs.</h2>
-        <p>
-          I'm a Computer Engineering student at Covenant University (CGPA 4.86/5.0, expected
-          2028). I build Python APIs, AI-enabled applications, event platforms,
-          and embedded systems while strengthening my full-stack foundations.
-        </p>
-        <p>
-          Most of my progress has come through self-directed projects: define the problem,
-          build a small system, test it, document the result, and improve what failed.
-        </p>
-      </div>
-
-      <aside class="about-right">
-        <div class="about-card">
-          <h4>education</h4>
-          <p class="about-line">B.Eng. Computer Engineering</p>
-          <p class="about-sub">Covenant University · Ota, Nigeria</p>
-          <p class="about-sub mono-tag">2023 – 2028 · cgpa 4.86/5.0</p>
-          <hr>
-          <h4>recognition</h4>
-          <p class="about-line">2nd Place – IoT Speed Detection Competition</p>
-          <hr>
-          <h4>coursework</h4>
-          <p class="about-sub">
-            Intelligent Systems · Software Architecture · Data Structures &amp; Algorithms ·
-            Linear Algebra · Probability · Statistical Methods
-          </p>
-        </div>
-
-        <div class="contact-block">
-          <h4>contact</h4>
-          <a href="mailto:olatunjitobiloba05@gmail.com" class="contact-line">olatunjitobiloba05@gmail.com →</a>
-          <a href="tel:+2349066821711" class="contact-line">+234 906 682 1711 →</a>
-          <a href="https://www.linkedin.com/in/olatunji-oluwatobiloba-186659291/" target="_blank" rel="noreferrer" class="contact-line">linkedin ↗</a>
-          <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer" class="contact-line">github ↗</a>
-          <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" class="contact-line">download cv ↓</a>
-        </div>
-      </aside>
-    </div>
-  </section>
-
 </main>
 
+<!-- ============= FOOTER ============= -->
 <footer class="site-footer">
-  <div class="container footer-inner">
-    <span class="mono-tag">© 2026 oluwatobiloba olatunji · lagos, nigeria</span>
-    <span class="mono-tag dim">handcrafted html · evidence first</span>
+  <div class="container">
+    <div class="footer-cta reveal">
+      <h2>Say hello.</h2>
+      <p>Looking for internship opportunities and open to collaborating on projects that involve real engineering problems.</p>
+      <a href="mailto:olatunjitobiloba05@gmail.com" class="email-link">
+        olatunjitobiloba05@gmail.com
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+      </a>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-left">
+        <span class="footer-copy">&copy; 2026 Oluwatobiloba Olatunji</span>
+        <button class="ask-tobi-btn" aria-label="Ask Tobi">
+          <kbd>&#8984;K</kbd>
+          <span>Ask Tobi</span>
+        </button>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer" aria-label="GitHub">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/olatunji-oluwatobiloba-186659291/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="mailto:olatunjitobiloba05@gmail.com" aria-label="Email">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+        </a>
+      </div>
+    </div>
   </div>
 </footer>
+
+<!-- ============= COMMAND PALETTE — "Ask Tobi" ============= -->
+<div class="cmd-overlay" id="cmd-overlay" aria-hidden="true">
+  <div class="cmd-palette" role="dialog" aria-label="Ask Tobi">
+    <div class="cmd-header">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" class="cmd-input" id="cmd-input" placeholder="Ask Tobi something..." autocomplete="off" spellcheck="false">
+      <span class="cmd-esc">esc</span>
+    </div>
+    <div class="cmd-body" id="cmd-body">
+      <div class="cmd-answer" id="cmd-answer" style="display:none;">
+        <div class="cmd-label">Tobi</div>
+        <div id="cmd-answer-text"></div>
+      </div>
+      <div id="cmd-suggestions"></div>
+    </div>
+    <div class="cmd-nav">
+      <span><kbd>&uarr;</kbd><kbd>&darr;</kbd> navigate</span>
+      <span><kbd>&crarr;</kbd> select</span>
+    </div>
+  </div>
+</div>
+
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" aria-label="Back to top">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+</button>
 
 <script src="script.js" defer></script>
 </body>
