@@ -52,15 +52,14 @@ body {
   overflow-x: hidden;
 }
 
-/* Dot-grid background pattern (different from Abraham's line grid) */
-body::before {
-  content: '';
+/* Background noise texture — visible speckle pattern, NOT grid lines */
+.bg-noise {
   position: fixed;
   inset: 0;
-  background-image: radial-gradient(circle, rgba(34, 197, 94, 0.07) 1px, transparent 1px);
-  background-size: 32px 32px;
-  pointer-events: none;
   z-index: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background: repeating-conic-gradient(rgba(255,255,255,0.06) 0% 25%, transparent 0% 50%) 0 0 / 4px 4px;
 }
 
 img { display: block; max-width: 100%; }
@@ -92,31 +91,56 @@ ul, ol { list-style: none; }
 
 
 /* ============================================================
-   INTRO OVERLAY
+   INTRO OVERLAY — curtain split transition
    ============================================================ */
 
 .intro-overlay {
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition: clip-path 0.9s cubic-bezier(0.77, 0, 0.175, 1);
-  clip-path: inset(0 0 0 0);
 }
 
-.intro-overlay.is-done {
-  clip-path: inset(0 0 100% 0);
-  pointer-events: none;
+.intro-curtain {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background: var(--bg);
+  transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1);
+}
+
+.intro-curtain-left { left: 0; }
+.intro-curtain-right { right: 0; }
+
+.intro-overlay.is-splitting .intro-curtain-left {
+  transform: translateX(-100%);
+}
+
+.intro-overlay.is-splitting .intro-curtain-right {
+  transform: translateX(100%);
+}
+
+.intro-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  transition: opacity 0.4s ease;
 }
 
 .intro-word-wrapper {
   position: relative;
-  height: 1.1em;
-  overflow: hidden;
+  width: 100%;
+  max-width: 800px;
+  height: clamp(4.4rem, 13.2vw, 9.9rem);
   font-family: var(--font-serif);
   font-size: clamp(4rem, 12vw, 9rem);
   font-weight: 400;
@@ -128,12 +152,12 @@ ul, ol { list-style: none; }
 .intro-word {
   display: block;
   position: absolute;
-  left: 0;
-  right: 0;
+  inset: 0;
   text-align: center;
   opacity: 0;
   transform: translateY(100%);
   transition: opacity 0.4s ease, transform 0.5s var(--ease-out);
+  color: var(--accent);
 }
 
 .intro-word.is-active {
@@ -144,10 +168,6 @@ ul, ol { list-style: none; }
 .intro-word.is-exiting {
   opacity: 0;
   transform: translateY(-100%);
-}
-
-.intro-dot {
-  color: var(--accent);
 }
 
 .intro-skip {
@@ -491,18 +511,22 @@ ul, ol { list-style: none; }
   align-items: center;
   gap: 8px;
   padding: 6px 14px;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
   border-radius: 100px;
   font-size: 12px;
-  color: var(--text-secondary);
+  color: var(--accent);
   cursor: pointer;
-  transition: border-color var(--transition), color var(--transition);
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.ask-tobi-btn kbd {
+  color: var(--text);
 }
 
 .ask-tobi-btn:hover {
+  background: rgba(34, 197, 94, 0.18);
   border-color: var(--accent);
-  color: var(--text);
 }
 
 .ask-tobi-btn kbd {
@@ -543,139 +567,112 @@ ul, ol { list-style: none; }
 
 
 /* ============================================================
-   PROJECT CARDS
+   PROJECT CARDS — image determines card size, NO cropping
    ============================================================ */
 
 .projects-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 48px;
+  gap: 32px;
 }
 
 @media (min-width: 768px) {
   .projects-grid {
-    grid-template-columns: 7fr 5fr;
-    gap: 16px;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
   }
 }
 
-/* Large featured card */
-.project-card-lg {
-  display: flex;
-  flex-direction: column;
-}
-
-@media (min-width: 768px) {
-  .project-card-lg { min-height: 500px; }
-}
-
-/* Stacked column for smaller cards */
-.project-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
 .project-card {
-  position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
   border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
   overflow: hidden;
-  flex: 1;
+  transition: border-color 0.3s ease, transform 0.3s ease;
 }
 
-.project-card-link {
+.project-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-3px);
+}
+
+/* Featured card spans full width */
+.project-card.featured {
+  grid-column: 1 / -1;
+}
+
+/* Image wrapper — NO fixed height, image flows naturally */
+.project-media {
+  overflow: hidden;
+}
+
+.project-media a {
   display: block;
-  position: relative;
+}
+
+.project-media img {
   width: 100%;
-  height: 100%;
-  min-height: 260px;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
+  height: auto;
+  display: block;
+  transition: transform 0.6s ease-out;
 }
 
-@media (min-width: 768px) {
-  .project-card-lg .project-card-link { min-height: 500px; }
+.project-card:hover .project-media img {
+  transform: scale(1.03);
 }
 
-.project-card-link img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.7s ease-out;
-}
-
-.project-card:hover img {
-  transform: scale(1.06);
-}
-
-/* Gradient overlay */
-.project-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.1) 40%, transparent 100%);
-  transition: opacity 0.3s ease;
-}
-
-.project-card:hover .project-overlay {
-  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.15) 45%, transparent 100%);
-}
-
-/* Project info at bottom of card */
-.project-card-info {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+/* Text info BELOW the image */
+.project-info {
   padding: 20px;
 }
 
-.project-card-info h3 {
+.project-info h3 {
   font-family: var(--font-serif);
   font-size: 20px;
   font-weight: 400;
-  color: #fff;
   line-height: 1.3;
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.project-card-info p {
-  margin-top: 6px;
-  font-size: 12px;
-  color: rgba(255,255,255,0.75);
-  line-height: 1.5;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
-.project-card-info .project-arrow {
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: rgba(255,255,255,0.35);
+.project-info h3 svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.project-card:hover .project-arrow {
-  color: #fff;
+.project-card:hover .project-info h3 svg {
+  color: var(--accent);
   transform: translate(2px, -2px);
 }
 
-.project-arrow svg { width: 18px; height: 18px; }
-
-/* Full-width row for extra projects */
-.projects-row {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  margin-top: 16px;
+.project-info p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+  font-weight: 300;
 }
 
-@media (min-width: 768px) {
-  .projects-row { grid-template-columns: 1fr 1fr; }
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.project-tags span {
+  font-size: 11px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--accent-dim);
+  color: var(--accent);
+  font-weight: 500;
 }
 
 /* More projects (text-only links) */
@@ -1146,6 +1143,315 @@ ul, ol { list-style: none; }
   padding: 1px 4px;
   border: 1px solid var(--border);
   border-radius: 3px;
+}
+
+
+/* ============================================================
+   HERO CHARACTER ANIMATION
+   ============================================================ */
+
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.4s ease, transform 0.6s var(--ease-out);
+}
+
+.hero-char.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   ROTATING WORD — cycles in hero headline
+   ============================================================ */
+
+.rotating-wrapper {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  vertical-align: bottom;
+  min-width: 160px;
+}
+
+.rotating-word {
+  display: inline-block;
+  color: var(--accent);
+  font-style: italic;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.rotating-word.is-exiting {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.rotating-word.is-entering {
+  animation: rotateIn 0.4s var(--ease-out) forwards;
+}
+
+@keyframes rotateIn {
+  0% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   SECTION SUBTITLE
+   ============================================================ */
+
+.section-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 300;
+}
+
+
+/* ============================================================
+   READS — Book grid
+   ============================================================ */
+
+.reads-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .reads-grid { grid-template-columns: repeat(5, 1fr); }
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.book-cover {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  aspect-ratio: 2 / 3;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.book-card:hover .book-cover {
+  transform: translateY(-4px);
+  border-color: var(--border-hover);
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.book-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 48px;
+}
+
+.book-info h4 {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.book-info span {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  font-weight: 300;
+}
+
+
+/* ============================================================
+   HERO CHARACTER ANIMATION
+   ============================================================ */
+
+.hero-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.4s ease, transform 0.6s var(--ease-out);
+}
+
+.hero-char.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ============================================================
+   ROTATING WORD — animates IN with hero text, then cycles
+   ============================================================ */
+
+.rotating-wrapper {
+  display: inline-block;
+  position: relative;
+  vertical-align: bottom;
+  overflow: hidden;
+  /* Starts hidden like hero-char, revealed together */
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.4s ease 0.5s, transform 0.6s var(--ease-out) 0.5s;
+}
+
+.rotating-wrapper.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.rotating-word {
+  display: inline-block;
+  color: var(--accent);
+  font-style: italic;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.rotating-word.is-exiting {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.rotating-word.is-entering {
+  animation: rotateWordIn 0.4s var(--ease-out) forwards;
+}
+
+@keyframes rotateWordIn {
+  0% { opacity: 0; transform: translateY(100%); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   SECTION SUBTITLE
+   ============================================================ */
+
+.section-sub, .page-sub {
+  font-size: 14px;
+  color: var(--text-secondary);
+  font-weight: 300;
+  margin-top: 4px;
+}
+
+
+/* ============================================================
+   PAGE HEADER — sub-pages (work, reads, about)
+   ============================================================ */
+
+.page-section {
+  padding-top: 140px;
+}
+
+.page-header {
+  margin-bottom: 56px;
+}
+
+.page-header h1 {
+  font-family: var(--font-serif);
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.back-link {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  letter-spacing: 0.04em;
+  margin-bottom: 16px;
+  transition: color var(--transition);
+}
+
+.back-link:hover {
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   ACTIVE NAV LINK
+   ============================================================ */
+
+.nav-links a.is-active,
+.mobile-menu a.is-active {
+  color: var(--accent);
+}
+
+
+/* ============================================================
+   EXPLORE CARDS — homepage navigation
+   ============================================================ */
+
+.explore-section {
+  padding-top: 0;
+}
+
+.explore-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .explore-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 32px 28px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  transition: border-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+}
+
+.explore-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.explore-icon {
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+.explore-card h3 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.explore-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.explore-arrow {
+  font-size: 18px;
+  color: var(--accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.explore-card:hover .explore-arrow {
+  opacity: 1;
+  transform: translateX(0);
 }
 
 

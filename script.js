@@ -1,10 +1,14 @@
 /* ============================================================
-   INTRO ANIMATION — "build. test. ship."
+   INTRO ANIMATION — "build. test. ship." with curtain split
    ============================================================ */
 
 function initIntro() {
   var overlay = document.getElementById('intro-overlay');
-  if (!overlay) return;
+  if (!overlay) {
+    // No intro on sub-pages — just run reveals directly
+    initHeroTextReveal();
+    return;
+  }
 
   var words = [
     document.getElementById('intro-w0'),
@@ -12,95 +16,114 @@ function initIntro() {
     document.getElementById('intro-w2')
   ];
 
-  var current = 0;
-  var timeline = [600, 900, 900, 900, 800]; // delays in ms
-
-  function showWord(index) {
-    words.forEach(function(w, i) {
-      w.classList.remove('is-active', 'is-exiting');
-      if (i < index) w.classList.add('is-exiting');
-    });
-    if (index < words.length) {
-      words[index].classList.add('is-active');
-    }
-  }
+  var done = false;
+  var contentEl = overlay.querySelector('.intro-content');
 
   function finish() {
-    overlay.classList.add('is-done');
-    document.body.style.overflow = '';
+    if (done) return;
+    done = true;
+
+    // 1. Fade out the word content
+    if (contentEl) contentEl.style.opacity = '0';
+
+    // 2. After content fades, split the curtains
     setTimeout(function() {
-      overlay.style.display = 'none';
-      initHeroTextReveal();
-    }, 900);
+      overlay.classList.add('is-splitting');
+
+      // 3. After curtains split, clean up and reveal page
+      setTimeout(function() {
+        overlay.style.display = 'none';
+        document.body.style.overflow = '';
+        initHeroTextReveal();
+      }, 900);
+    }, 400);
   }
 
-  // Skip on click
-  overlay.addEventListener('click', function() {
-    finish();
-  });
+  // Skip on click/tap
+  overlay.addEventListener('click', finish);
 
   // Disable scroll during intro
   document.body.style.overflow = 'hidden';
 
-  // Sequence: pause -> show word 0 -> pause -> exit 0, show 1 -> pause -> exit 1, show 2 -> pause -> finish
-  setTimeout(function() {
-    showWord(0);
+  // Sequential animation: show each word, then exit
+  var steps = [
+    function() { words[0].classList.add('is-active'); },
+    function() { words[0].classList.remove('is-active'); words[0].classList.add('is-exiting'); },
+    function() { words[1].classList.add('is-active'); },
+    function() { words[1].classList.remove('is-active'); words[1].classList.add('is-exiting'); },
+    function() { words[2].classList.add('is-active'); },
+    function() { finish(); }
+  ];
+
+  var delays = [400, 800, 200, 800, 200, 900];
+
+  var elapsed = 0;
+  steps.forEach(function(step, i) {
+    elapsed += delays[i];
     setTimeout(function() {
-      words[0].classList.add('is-exiting');
-      words[0].classList.remove('is-active');
-      setTimeout(function() {
-        showWord(1);
-        setTimeout(function() {
-          words[1].classList.add('is-exiting');
-          words[1].classList.remove('is-active');
-          setTimeout(function() {
-            showWord(2);
-            setTimeout(function() {
-              finish();
-            }, timeline[4]);
-          }, 150);
-        }, timeline[3]);
-      }, 150);
-    }, timeline[1]);
-  }, timeline[0]);
+      if (!done) step();
+    }, elapsed);
+  });
 }
 
 
 /* ============================================================
-   HERO TEXT REVEAL — character-by-character animation
+   HERO TEXT REVEAL — character-by-character + rotating word
    ============================================================ */
 
 function initHeroTextReveal() {
   var heading = document.getElementById('hero-name');
   if (!heading) return;
 
-  var html = heading.innerHTML;
-  // Wrap each character in a span, preserving <br> tags
-  var wrapped = '';
-  var charIndex = 0;
-  var inTag = false;
+  var chars = heading.querySelectorAll('.hero-char');
+  var rotatingWrapper = heading.querySelector('.rotating-wrapper');
 
-  for (var i = 0; i < html.length; i++) {
-    if (html[i] === '<') { inTag = true; wrapped += html[i]; continue; }
-    if (html[i] === '>') { inTag = false; wrapped += html[i]; continue; }
-    if (inTag) { wrapped += html[i]; continue; }
-    if (html[i] === ' ') {
-      wrapped += ' ';
-    } else {
-      wrapped += '<span class="char" style="transition-delay:' + (charIndex * 25) + 'ms">' + html[i] + '</span>';
-      charIndex++;
-    }
-  }
-
-  heading.innerHTML = wrapped;
-
-  // Trigger animation after a small delay
+  // Reveal all characters with staggered timing
   setTimeout(function() {
-    var chars = heading.querySelectorAll('.char');
     chars.forEach(function(ch) {
       ch.classList.add('is-visible');
     });
+
+    // Reveal the rotating word wrapper together with the last chars
+    if (rotatingWrapper) {
+      rotatingWrapper.classList.add('is-visible');
+    }
+
+    // Start the word cycling AFTER the reveal completes
+    setTimeout(function() {
+      initRotatingWord();
+    }, 1200);
   }, 100);
+}
+
+
+/* ============================================================
+   ROTATING WORD — cycles the last word in hero headline
+   ============================================================ */
+
+function initRotatingWord() {
+  var wordEl = document.getElementById('rotating-word');
+  if (!wordEl) return;
+
+  var words = ['work.', 'scale.', 'last.'];
+  var index = 0;
+
+  setInterval(function() {
+    // Slide current word up and fade out
+    wordEl.classList.add('is-exiting');
+
+    setTimeout(function() {
+      // Switch to next word
+      index = (index + 1) % words.length;
+      wordEl.textContent = words[index];
+      wordEl.classList.remove('is-exiting');
+      wordEl.classList.add('is-entering');
+
+      setTimeout(function() {
+        wordEl.classList.remove('is-entering');
+      }, 400);
+    }, 350);
+  }, 2800);
 }
 
 
@@ -195,13 +218,35 @@ function initBackToTop() {
 
 
 /* ============================================================
+   ACTIVE NAV LINK — highlights current page
+   ============================================================ */
+
+function initActiveNav() {
+  var path = window.location.pathname;
+  var links = document.querySelectorAll('.nav-links a, .mobile-menu a');
+
+  links.forEach(function(link) {
+    var href = link.getAttribute('href');
+    if (!href) return;
+
+    // Match by page name
+    var isActive = false;
+    if (href.indexOf('work') !== -1 && path.indexOf('work') !== -1) isActive = true;
+    if (href.indexOf('reads') !== -1 && path.indexOf('reads') !== -1) isActive = true;
+    if (href.indexOf('about') !== -1 && path.indexOf('about') !== -1) isActive = true;
+
+    if (isActive) link.classList.add('is-active');
+  });
+}
+
+
+/* ============================================================
    COMMAND PALETTE — "Ask Tobi"
    ============================================================ */
 
 function initCommandPalette() {
   var overlay = document.getElementById('cmd-overlay');
   var input = document.getElementById('cmd-input');
-  var body = document.getElementById('cmd-body');
   var answerBox = document.getElementById('cmd-answer');
   var answerText = document.getElementById('cmd-answer-text');
   var suggestionsBox = document.getElementById('cmd-suggestions');
@@ -209,7 +254,6 @@ function initCommandPalette() {
 
   var selectedIndex = -1;
 
-  // Tobi's personality and knowledge base — all facts from Toby's actual profile
   var introText = "I'm Tobi, a digital version of Oluwatobiloba. I know about his projects, skills, and experience. What would you like to know?";
 
   var qa = [
@@ -226,8 +270,8 @@ function initCommandPalette() {
     {
       question: 'show me his projects',
       keywords: ['projects', 'work', 'portfolio', 'built'],
-      answer: 'His main projects include FocusPilot (productivity platform with Chrome extension), a Loan Prediction API (88.62% accuracy), FinSight AI (hackathon build), FedRec (federated learning research), Heroes Conference platform, and an IoT Vehicle Speed Detector. Scroll up to the Work section to see them.',
-      action: function() { document.getElementById('work').scrollIntoView({ behavior: 'smooth' }); }
+      answer: 'His main projects include FocusPilot (productivity platform with Chrome extension), a Loan Prediction API (88.62% accuracy), FinSight AI (hackathon build), FedRec (federated learning research), Heroes Conference platform, and an IoT Vehicle Speed Detector.',
+      action: function() { window.location.href = 'work.html'; }
     },
     {
       question: 'what is his education',
@@ -261,12 +305,13 @@ function initCommandPalette() {
       question: 'what is his experience',
       keywords: ['experience', 'work history', 'intern', 'job', 'career'],
       answer: 'Currently interning at Union Bank of Nigeria (IT Department). Previously: Graphics Head at CU Technical Crew, Engineering Design Intern (SWEP) at Covenant University, In-Charge of 150+ students at Technical Crew, and Design Engineering Intern at HVAC Solutions Nigeria.',
-      action: function() { document.getElementById('log').scrollIntoView({ behavior: 'smooth' }); }
+      action: function() { window.location.href = 'about.html'; }
     },
     {
-      question: 'what are his hobbies',
-      keywords: ['hobbies', 'interests', 'fun', 'free time'],
-      answer: 'When he is not coding, he leads visual production for university events as Graphics Head of the Technical Crew. He also enjoys working on hardware projects and engineering design.'
+      question: 'what does he read',
+      keywords: ['read', 'books', 'reading'],
+      answer: 'Rich Dad Poor Dad, The Psychology of Money, The Richest Man in Babylon, Satan Get Lost by Bishop Oyedepo, How You Can Be Led by the Spirit of God by Kenneth Hagin, and The Lean Startup.',
+      action: function() { window.location.href = 'reads.html'; }
     },
     {
       question: 'tell me a joke',
@@ -282,11 +327,6 @@ function initCommandPalette() {
       question: 'coffee or tea',
       keywords: ['coffee', 'tea', 'drink'],
       answer: 'I am a digital construct, so I do not have taste buds. But Toby would probably need coffee to get through those 4.86 CGPA semesters.'
-    },
-    {
-      question: 'what does he read',
-      keywords: ['read', 'books', 'learning', 'study'],
-      answer: 'He learns mostly through building projects and documentation. His approach: define the problem, build a small system, test it, document the result, and improve what failed.'
     },
     {
       question: 'what time is it',
@@ -305,10 +345,9 @@ function initCommandPalette() {
     'show me his github',
     'show me his linkedin',
     'where is he based',
-    'what are his hobbies',
+    'what does he read',
     'coffee or tea',
     'tell me a joke',
-    'what does he read',
     'surprise me',
     'what time is it'
   ];
@@ -380,7 +419,6 @@ function initCommandPalette() {
     }
     input.value = query;
 
-    // Filter suggestions to show remaining
     var remaining = defaultSuggestions.filter(function(s) { return s !== query; });
     renderSuggestions(remaining);
   }
@@ -407,7 +445,6 @@ function initCommandPalette() {
       return s.toLowerCase().indexOf(val) !== -1;
     });
 
-    // Also check if any keyword matches
     if (filtered.length === 0) {
       var match = findAnswer(val);
       if (match) {
@@ -417,7 +454,6 @@ function initCommandPalette() {
 
     renderSuggestions(filtered);
 
-    // Live preview answer
     var match = findAnswer(val);
     if (match) {
       showAnswer(match.answer);
@@ -471,7 +507,7 @@ function initCommandPalette() {
     }
   });
 
-  // Close on overlay click (not palette click)
+  // Close on overlay click
   overlay.addEventListener('click', function(e) {
     if (e.target === overlay) closePalette();
   });
@@ -488,5 +524,6 @@ document.addEventListener('DOMContentLoaded', function() {
   initMobileMenu();
   initHeaderScroll();
   initBackToTop();
+  initActiveNav();
   initCommandPalette();
 });
