@@ -1,5 +1,5 @@
 /* ============================================================
-   INTRO ANIMATION — "build. test. ship." with curtain split
+   INTRO ANIMATION — "build. test. ship." with zoom-out reveal
    ============================================================ */
 
 function initIntro() {
@@ -17,26 +17,20 @@ function initIntro() {
   ];
 
   var done = false;
-  var contentEl = overlay.querySelector('.intro-content');
 
   function finish() {
     if (done) return;
     done = true;
 
-    // 1. Fade out the word content
-    if (contentEl) contentEl.style.opacity = '0';
+    // Dynamic zoom-out + scale reveal
+    overlay.classList.add('is-leaving');
 
-    // 2. After content fades, split the curtains
+    // After the animation completes, clean up
     setTimeout(function() {
-      overlay.classList.add('is-splitting');
-
-      // 3. After curtains split, clean up and reveal page
-      setTimeout(function() {
-        overlay.style.display = 'none';
-        document.body.style.overflow = '';
-        initHeroTextReveal();
-      }, 900);
-    }, 400);
+      overlay.style.display = 'none';
+      document.body.style.overflow = '';
+      initHeroTextReveal();
+    }, 800);
   }
 
   // Skip on click/tap
