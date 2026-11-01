@@ -6,7 +6,6 @@ import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
 import { InferencePlayground } from "@/components/bento/InferencePlayground";
-import { BorderBeam } from "@/components/ui/BorderBeam";
 import { cn } from "@/lib/utils";
 
 interface BentoGridProps {
@@ -84,18 +83,18 @@ export function BentoGrid({ className }: BentoGridProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-40px" }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="md:col-span-2 relative p-[2px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgba(16,185,129,0.16)] transition-all duration-300"
+          className="md:col-span-2 relative p-[2px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgba(99,102,241,0.18)] transition-all duration-300"
         >
-          {/* 21st.dev Laser Border Beam moving around perimeter */}
-          <BorderBeam
-            size={320}
-            duration={6.5}
-            colorFrom="#10B981"
-            colorTo="#6366F1"
-            borderWidth={2}
+          {/* Animated Moving Rainbow Gradient Border (ReactBits, 21st.dev & Abraham Adelodun style) */}
+          <div
+            className="absolute -inset-[150%] opacity-85 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none animate-[spin_6s_linear_infinite]"
+            style={{
+              background:
+                "conic-gradient(from 0deg, #ff4545, #ffa500, #ffea00, #00ff88, #00d2ff, #7a5cff, #ff007f, #ff4545)",
+            }}
           />
 
-          <article className="relative h-full w-full bg-white rounded-[14px] p-6 flex flex-col justify-between border border-black/[0.06]">
+          <article className="relative h-full w-full bg-white rounded-[14px] p-6 flex flex-col justify-between border border-black/[0.04]">
             <div className="space-y-4">
               {/* Header: Category + Star Badge + Status Badge */}
               <div className="flex items-center justify-between gap-2 flex-wrap">
