@@ -4,42 +4,28 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * Personalized Cinematic Intro Loader (Inspired by Dribbble, 21st.dev & Awwwards)
+ * Personalized Cinematic Intro Reveal (Dribbble & 21st.dev Studio Grade)
  * Sequences through: "Builder." -> "Thinker." -> "Learner." -> "Oluwatobiloba Olatunji"
- * Then transitions out with a fluid curved bottom curtain wipe.
+ * Always presents smoothly on page load, clickable or skippable with Esc.
  */
 export function IntroCurtain() {
-  const [showIntro, setShowIntro] = useState(false);
-  const [step, setStep] = useState<0 | 1 | 2 | 3 | 4>(0);
+  const [showIntro, setShowIntro] = useState(true);
+  const [step, setStep] = useState<0 | 1 | 2 | 3>(0);
   const [isLifting, setIsLifting] = useState(false);
 
   const handleFinish = useCallback(() => {
     setIsLifting(true);
     setTimeout(() => {
       setShowIntro(false);
-      try {
-        sessionStorage.setItem("hasSeenIntro", "true");
-      } catch {
-        // Safe fallback if sessionStorage is restricted
-      }
-    }, 950);
+    }, 900);
   }, []);
 
   useEffect(() => {
-    try {
-      const hasSeen = sessionStorage.getItem("hasSeenIntro");
-      if (hasSeen) return;
-    } catch {
-      // Continue
-    }
-
-    setShowIntro(true);
-
-    // Sequence through words: Builder (0) -> Thinker (1) -> Learner (2) -> Final Lockup (3) -> Lift (4)
-    const t1 = setTimeout(() => setStep(1), 700);  // Thinker.
-    const t2 = setTimeout(() => setStep(2), 1400); // Learner.
-    const t3 = setTimeout(() => setStep(3), 2100); // Tobi reveal
-    const t4 = setTimeout(() => handleFinish(), 3100); // Trigger fluid lift
+    // Sequence through words: Builder (0) -> Thinker (1) -> Learner (2) -> Final Lockup (3) -> Lift
+    const t1 = setTimeout(() => setStep(1), 750);  // Thinker.
+    const t2 = setTimeout(() => setStep(2), 1500); // Learner.
+    const t3 = setTimeout(() => setStep(3), 2250); // Synthesis lockup
+    const t4 = setTimeout(() => handleFinish(), 3300); // Lift away
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
@@ -63,8 +49,10 @@ export function IntroCurtain() {
 
   return (
     <div
+      role="dialog"
+      aria-modal="true"
       aria-label="Intro presentation"
-      className="fixed inset-0 z-50 overflow-hidden select-none pointer-events-auto"
+      className="fixed inset-0 z-[9999] overflow-hidden select-none pointer-events-auto"
       onClick={handleFinish}
     >
       {/* Main Lifting Curtain Overlay */}
@@ -72,7 +60,7 @@ export function IntroCurtain() {
         initial={{ y: 0 }}
         animate={{ y: isLifting ? "-105%" : 0 }}
         transition={{
-          duration: 0.95,
+          duration: 0.9,
           ease: [0.76, 0, 0.24, 1], // Smooth exponential cubic-bezier
         }}
         className="relative w-full h-full bg-[#0A0A0B] text-white flex flex-col justify-between p-6 sm:p-12 shadow-2xl"
@@ -90,7 +78,7 @@ export function IntroCurtain() {
               e.stopPropagation();
               handleFinish();
             }}
-            className="text-xs font-mono tracking-wider uppercase px-3 py-1.5 rounded-full border border-white/15 bg-white/5 hover:bg-white/10 text-zinc-300 hover:text-white transition-colors cursor-pointer"
+            className="text-xs font-mono tracking-wider uppercase px-3.5 py-1.5 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-zinc-200 hover:text-white transition-colors cursor-pointer"
           >
             Skip [Esc]
           </button>
@@ -149,7 +137,7 @@ export function IntroCurtain() {
           </AnimatePresence>
         </div>
 
-        {/* Bottom subtle instruction */}
+        {/* Bottom subtle info */}
         <div className="w-full max-w-5xl mx-auto flex items-center justify-between text-[11px] font-mono text-zinc-400 z-10">
           <span>PORTFOLIO 2026</span>
           <span className="hidden sm:inline">CLICK ANYWHERE TO ENTER</span>

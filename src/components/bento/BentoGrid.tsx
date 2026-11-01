@@ -85,12 +85,12 @@ export function BentoGrid({ className }: BentoGridProps) {
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
           className="md:col-span-2 relative p-[2px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgba(99,102,241,0.18)] transition-all duration-300"
         >
-          {/* Animated Moving Rainbow Gradient Border (ReactBits, 21st.dev & Abraham Adelodun style) */}
+          {/* Animated Moving Rainbow Edge Laser Beam (Single edge traveling around the perimeter) */}
           <div
-            className="absolute -inset-[150%] opacity-85 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none animate-[spin_6s_linear_infinite]"
+            className="absolute -inset-[150%] opacity-90 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none animate-[spin_4.5s_linear_infinite]"
             style={{
               background:
-                "conic-gradient(from 0deg, #ff4545, #ffa500, #ffea00, #00ff88, #00d2ff, #7a5cff, #ff007f, #ff4545)",
+                "conic-gradient(from 0deg, transparent 0deg, transparent 275deg, #ff3366 290deg, #ff9900 305deg, #00ff88 320deg, #00d2ff 338deg, #8b5cf6 355deg, transparent 360deg)",
             }}
           />
 

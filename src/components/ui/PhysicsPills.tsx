@@ -271,3 +271,4 @@ export function PhysicsPills({ className }: { className?: string }) {
     </div>
   );
 }
+
