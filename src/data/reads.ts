@@ -7,79 +7,16 @@ export const reads: Book[] = [
     author: "Martin Kleppmann",
     cover: "/reads/ddia.jpg",
     takeaway:
-      "Reliability is not an accident. In distributed systems, expect hardware to fail, networks to lag, and data to arrive out of order. The real engineering problem is managing state when components crash.",
+      "I learnt that production ML pipelines fail when distributed state is messy—so I design inference services around idempotent writes, clean partition keys, and predictable replication lag.",
     status: "Reading",
   },
   {
-    id: "the-obstacle-is-the-way",
-    title: "The Obstacle Is the Way",
-    author: "Ryan Holiday",
-    cover: "/reads/obstacle.jpg",
+    id: "the-lean-startup",
+    title: "The Lean Startup",
+    author: "Eric Ries",
+    cover: "/reads/lean startup.jpg",
     takeaway:
-      "Complaining changes nothing. Focus entirely on what you can control, and treat every roadblock as the exact practice you need.",
-    status: "Read",
-  },
-  {
-    id: "satan-get-lost",
-    title: "Satan Get Lost",
-    author: "Bishop David Oyedepo",
-    cover: "/reads/satan get lost.jpg",
-    takeaway:
-      "Spiritual authority is active, not passive. You do not negotiate with opposition; you take bold authority over it.",
-    status: "Read",
-  },
-  {
-    id: "the-law-of-faith",
-    title: "The Law of Faith",
-    author: "Bishop David Oyedepo",
-    cover: "/reads/law-of-faith.jpg",
-    takeaway:
-      "Faith is not wishful thinking or emotion. It is a precise spiritual law that produces results only when backed by deliberate action.",
-    status: "Read",
-  },
-  {
-    id: "success-strategies",
-    title: "Success Strategies",
-    author: "Bishop David Oyedepo",
-    cover: "/reads/success-strategies.jpg",
-    takeaway:
-      "Diligence and quiet preparation beat raw talent every time. Sustainable excellence comes from disciplined daily routines.",
-    status: "Read",
-  },
-  {
-    id: "how-to-be-led-by-the-spirit",
-    title: "How to Be Led by the Spirit of God",
-    author: "Bishop David Oyedepo",
-    cover: "/reads/led-by-spirit.jpg",
-    takeaway:
-      "Direction comes from peace in your spirit, not noise in your head. Learning to recognize the quiet inner witness prevents costly mistakes.",
-    status: "Read",
-  },
-  {
-    id: "boundaries",
-    title: "Boundaries: When to Say Yes, How to Say No",
-    author: "Dr. Henry Cloud & Dr. John Townsend",
-    cover: "/reads/boundaries.jpg",
-    takeaway:
-      "You cannot protect your focus if you cannot say no. Taking ownership of your life means knowing what is your responsibility and what belongs to others.",
-    status: "Read",
-  },
-  {
-    id: "finish",
-    title: "Finish: Give Yourself the Gift of Done",
-    author: "Jon Acuff",
-    cover: "/reads/finish.jpg",
-    takeaway:
-      "Perfectionism is just fear disguised as high standards. Cut your initial goal in half, drop arbitrary rules, and cross the finish line.",
-    status: "Read",
-  },
-  {
-    id: "crucial-conversations",
-    title: "Crucial Conversations",
-    author: "Kerry Patterson, Joseph Grenny, Ron McMillan, Al Switzler",
-    cover: "/reads/crucial-conversations.jpg",
-    takeaway:
-      "When conversations get heated, make the other person feel safe first. Most arguments happen because people feel attacked, not because they disagree on the facts.",
+      "I learnt not to train complex models before verifying demand—shipping a fast baseline API with real telemetry always beats guessing what users want.",
     status: "Read",
   },
   {
@@ -88,7 +25,106 @@ export const reads: Book[] = [
     author: "Kora",
     cover: "/reads/kora-wallets.jpg",
     takeaway:
-      "Building payment systems in Africa requires zero assumptions. Make every ledger transaction idempotent, reconcile balances continuously, and never let money move without cryptographic verification.",
+      "I learnt to treat financial API state as strictly zero-trust: every ledger update must have idempotency keys, race-condition locks, and atomic ACID guarantees.",
+    status: "Read",
+  },
+  {
+    id: "the-obstacle-is-the-way",
+    title: "The Obstacle Is the Way",
+    author: "Ryan Holiday",
+    cover: "/reads/obstacle.jpg",
+    takeaway:
+      "I learnt to use failing benchmarks and pipeline crashes as the exact checklist of edge cases to harden next.",
+    status: "Read",
+  },
+  {
+    id: "finish",
+    title: "Finish: Give Yourself the Gift of Done",
+    author: "Jon Acuff",
+    cover: "/reads/finish.jpg",
+    takeaway:
+      "I learnt that shipping a tested 88% accuracy model to real users is infinitely more valuable than endlessly tuning a 95% model that never leaves a local notebook.",
+    status: "Read",
+  },
+  {
+    id: "boundaries",
+    title: "Boundaries: When to Say Yes, How to Say No",
+    author: "Dr. Henry Cloud & Dr. John Townsend",
+    cover: "/reads/boundaries.jpg",
+    takeaway:
+      "I learnt to protect deep engineering focus by saying no to premature optimizations and scope creep that dilute core model reliability.",
+    status: "Read",
+  },
+  {
+    id: "crucial-conversations",
+    title: "Crucial Conversations",
+    author: "Kerry Patterson, Joseph Grenny, Ron McMillan, Al Switzler",
+    cover: "/reads/crucial-conversations.jpg",
+    takeaway:
+      "I learnt how to align engineering teams and stakeholders during outages by focusing on shared facts rather than defensive blame.",
+    status: "Read",
+  },
+  {
+    id: "psychology-of-money",
+    title: "The Psychology of Money",
+    author: "Morgan Housel",
+    cover: "/reads/psychology-of-money.jpg",
+    takeaway:
+      "I learnt that longevity in engineering comes from surviving worst-case tail risks, keeping cloud GPU costs sane, and compounding small daily improvements.",
+    status: "Read",
+  },
+  {
+    id: "the-richest-man-in-babylon",
+    title: "The Richest Man in Babylon",
+    author: "George S. Clason",
+    cover: "/reads/richest man in babylon.jpg",
+    takeaway:
+      "I learnt the discipline of paying myself first in dedicated learning and engineering hours every morning before the day's noise starts.",
+    status: "Read",
+  },
+  {
+    id: "rich-dad-poor-dad",
+    title: "Rich Dad Poor Dad",
+    author: "Robert Kiyosaki",
+    cover: "/reads/rich dad poor dad.jpg",
+    takeaway:
+      "I learnt to build software assets that generate value repeatedly—like reusable inference APIs and automated CI/CD pipelines—rather than trading raw hours.",
+    status: "Read",
+  },
+  {
+    id: "satan-get-lost",
+    title: "Satan Get Lost",
+    author: "Bishop David Oyedepo",
+    cover: "/reads/satan get lost.jpg",
+    takeaway:
+      "I learnt bold spiritual confidence and refusal to accept defeat when tackling complex, intimidating engineering challenges.",
+    status: "Read",
+  },
+  {
+    id: "the-law-of-faith",
+    title: "The Law of Faith",
+    author: "Bishop David Oyedepo",
+    cover: "/reads/law-of-faith.jpg",
+    takeaway:
+      "I learnt that conviction without corresponding technical action is dead; believing a system will scale means doing the hard profiling and stress-testing to prove it.",
+    status: "Read",
+  },
+  {
+    id: "success-strategies",
+    title: "Success Strategies",
+    author: "Bishop David Oyedepo",
+    cover: "/reads/success-strategies.jpg",
+    takeaway:
+      "I learnt that high academic performance (CGPA 4.83) and production engineering both boil down to quiet, relentless daily preparation.",
+    status: "Read",
+  },
+  {
+    id: "how-to-be-led-by-the-spirit",
+    title: "How You Can Be Led by the Spirit of God",
+    author: "Kenneth E. Hagin / Bishop David Oyedepo",
+    cover: "/reads/led-by-spirit.jpg",
+    takeaway:
+      "I learnt to cultivate quiet inner discernment and peace before making high-stakes architecture, career, and life decisions.",
     status: "Read",
   },
 ];

@@ -3,7 +3,7 @@ import { Mail, Github, Linkedin, MapPin } from "lucide-react";
 export function Footer() {
   return (
     <footer className="border-t border-black/[0.08] bg-canvas mt-20 pt-16 pb-12">
-      <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10">
         {/* Say hello / CTA block */}
         <div className="rounded-2xl border border-black/[0.08] bg-white p-6 sm:p-8 mb-12 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
           <div className="max-w-2xl">
@@ -50,7 +50,7 @@ export function Footer() {
             <span>Based in Lagos, Nigeria</span>
           </div>
           <div>
-            <p>Oluwatobiloba Olatunji · Built with Next.js &amp; Tailwind CSS</p>
+            <p>&copy; {new Date().getFullYear()} Oluwatobiloba Olatunji</p>
           </div>
         </div>
       </div>
