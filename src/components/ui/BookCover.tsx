@@ -47,3 +47,4 @@ export function BookCover({ src, alt, title, author, status }: BookCoverProps) {
     />
   );
 }
+

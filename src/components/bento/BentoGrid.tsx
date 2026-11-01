@@ -17,16 +17,16 @@ export function BentoGrid({ className }: BentoGridProps) {
   // Consumes data from @/data/projects with reliable fallbacks
   const loanProject = projects.find((p) => p.id === "loan-prediction-api") || {
     id: "loan-prediction-api",
-    title: "Loan Prediction API",
+    title: "Loan Prediction API (v7.0)",
     category: "ML Inference API & Serving",
     description:
-      "Production Flask API serving Random Forest loan qualification decisions with automated data validation and complete pytest coverage.",
+      "Real-time credit intelligence and autonomous underwriting engine serving Random Forest and ensemble loan qualification decisions with 88.62% accuracy, sub-180ms latency, and 100% pytest coverage.",
     status: "Live" as const,
     image: "/images/loan-api.png",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
     links: {
       live: "https://loan-predictor-api-91xu.onrender.com/app",
-      github: "https://github.com/olatunjitobiloba",
+      github: "https://github.com/olatunjitobiloba/loan-predictor-api",
     },
   };
 
@@ -48,16 +48,16 @@ export function BentoGrid({ className }: BentoGridProps) {
   const focusPilotProject = projects.find((p) => p.id === "focuspilot") || {
     id: "focuspilot",
     title: "FocusPilot",
-    category: "AI Product & Chrome Extension",
+    category: "AI Productivity OS & Extension",
     description:
-      "Focus and distraction management extension for developers and students with real-time Supabase cloud sync.",
+      "AI-powered productivity operating system and Chrome extension that detects distraction patterns in real-time, features adaptive focus flow sessions, and syncs telemetry to Supabase.",
     status: "Live" as const,
     image: "/images/focuspilot.png",
-    metrics: "Real-time sync · Active user base",
-    tags: ["Chrome API", "Supabase", "JavaScript"],
+    metrics: "Real-time behavioral signal collection · 49 tests passing",
+    tags: ["FastAPI", "React", "Chrome Extension", "Supabase", "Tailwind CSS"],
     links: {
       live: "https://focuspilot.vercel.app",
-      github: "https://github.com/olatunjitobiloba",
+      github: "https://github.com/olatunjitobiloba/FocusPilot",
     },
   };
 

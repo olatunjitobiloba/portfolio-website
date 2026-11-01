@@ -3,12 +3,12 @@ import { Project } from "@/types";
 export const projects: Project[] = [
   {
     id: "loan-prediction-api",
-    title: "Loan Prediction API",
+    title: "Loan Prediction API (v7.0)",
     category: "ML Inference API & Serving",
     description:
-      "Production Flask API serving Random Forest loan qualification decisions with automated data validation, 88.6% model accuracy, and complete pytest coverage.",
+      "Real-time credit intelligence and autonomous underwriting engine serving Random Forest and ensemble loan qualification decisions with 88.62% accuracy, sub-180ms latency, and 100% pytest coverage.",
     status: "Live",
-    metrics: "88.6% Accuracy · pytest 100% pass · Live on Render",
+    metrics: "88.62% Accuracy · 100% Pytest · 4-Model Ensemble Suite",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
     image: "/images/loan-api.png",
     links: {
@@ -37,15 +37,15 @@ export const projects: Project[] = [
   {
     id: "focuspilot",
     title: "FocusPilot",
-    category: "AI Product & Chrome Extension",
+    category: "AI Productivity OS & Extension",
     description:
-      "Focus and distraction management extension for developers and students with real-time Supabase cloud sync and telemetry tracking.",
+      "AI-powered productivity operating system and Chrome extension that detects distraction patterns in real-time, features adaptive focus flow sessions, and syncs telemetry to Supabase.",
     status: "Live",
-    metrics: "Real-time sync · Active user base",
-    tags: ["Chrome API", "Supabase", "JavaScript", "Product"],
+    metrics: "Real-time behavioral signal collection · 49 tests passing",
+    tags: ["FastAPI", "React", "Chrome Extension", "Supabase", "Tailwind CSS"],
     image: "/images/focuspilot.png",
     links: {
-      github: "https://github.com/olatunjitobiloba",
+      github: "https://github.com/olatunjitobiloba/FocusPilot",
       live: "https://focuspilot.vercel.app",
     },
     featuredInBento: true,
