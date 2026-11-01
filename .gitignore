@@ -1,6 +1,13 @@
 # Dependencies
 node_modules/
 
+# Next.js
+.next/
+out/
+build/
+*.tsbuildinfo
+next-env.d.ts
+
 # Playwright Test Artifacts
 test-results/
 playwright-report/
@@ -26,3 +33,5 @@ AGENTS.md
 CLAUDE.md
 .cursorrules
 
+
+.superpowers/
