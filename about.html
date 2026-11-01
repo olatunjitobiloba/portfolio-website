@@ -32,7 +32,7 @@
   </div>
 </header>
 
-<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true" inert>
   <a href="work.html">Work</a>
   <a href="about.html">About</a>
   <a href="reads.html">Reads</a>
@@ -152,7 +152,7 @@
     <div class="footer-bottom">
       <div class="footer-left">
         <span class="footer-copy">&copy; 2026 Oluwatobiloba Olatunji</span>
-        <button class="ask-tobi-btn" aria-label="Ask Tobi">
+        <button class="ask-tobi-btn" aria-label="&#8984;K Ask Tobi">
           <kbd>&#8984;K</kbd>
           <span>Ask Tobi</span>
         </button>
@@ -173,8 +173,8 @@
 </footer>
 
 <!-- Command Palette -->
-<div class="cmd-overlay" id="cmd-overlay" aria-hidden="true">
-  <div class="cmd-palette" role="dialog" aria-label="Ask Tobi">
+<div class="cmd-overlay" id="cmd-overlay" aria-hidden="true" inert>
+  <div class="cmd-palette" role="dialog" aria-modal="true" aria-label="Ask Tobi">
     <div class="cmd-header">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
       <input type="text" class="cmd-input" id="cmd-input" placeholder="Ask Tobi something..." autocomplete="off" spellcheck="false">

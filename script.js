@@ -105,6 +105,7 @@ function initRotatingWord() {
   var wordEl = document.getElementById('rotating-word');
   if (!wordEl) return;
 
+  var heading = document.getElementById('hero-name');
   var words = ['ships.', 'scales.', 'lasts.'];
   var index = 0;
 
@@ -116,6 +117,7 @@ function initRotatingWord() {
       // Switch to next word
       index = (index + 1) % words.length;
       wordEl.textContent = words[index];
+      if (heading) heading.setAttribute('aria-label', 'Building AI that ' + words[index]);
       wordEl.classList.remove('is-exiting');
       wordEl.classList.add('is-entering');
 
@@ -165,6 +167,7 @@ function initMobileMenu() {
     toggle.classList.toggle('is-open', isOpen);
     toggle.setAttribute('aria-expanded', String(isOpen));
     menu.setAttribute('aria-hidden', String(!isOpen));
+    menu.inert = !isOpen;
     document.body.style.overflow = isOpen ? 'hidden' : '';
   });
 
@@ -174,6 +177,7 @@ function initMobileMenu() {
       toggle.classList.remove('is-open');
       toggle.setAttribute('aria-expanded', 'false');
       menu.setAttribute('aria-hidden', 'true');
+      menu.inert = true;
       document.body.style.overflow = '';
     });
   });
@@ -252,7 +256,17 @@ function initCommandPalette() {
   var suggestionsBox = document.getElementById('cmd-suggestions');
   if (!overlay || !input) return;
 
+  // Show the shortcut the visitor actually has (⌘K on macOS, Ctrl K elsewhere)
+  if (!/Mac|iPhone|iPad/.test(navigator.platform)) {
+    document.querySelectorAll('.ask-tobi-btn').forEach(function(btn) {
+      var kbd = btn.querySelector('kbd');
+      if (kbd) kbd.textContent = 'Ctrl K';
+      btn.setAttribute('aria-label', 'Ctrl K Ask Tobi');
+    });
+  }
+
   var selectedIndex = -1;
+  var lastFocused = null;
 
   var introText = "I'm Tobi, a digital version of Oluwatobiloba. I know about his deployments, skills, and experience. Ask me anything.";
 
@@ -353,6 +367,8 @@ function initCommandPalette() {
   ];
 
   function openPalette() {
+    lastFocused = document.activeElement;
+    overlay.inert = false;
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
     input.value = '';
@@ -365,7 +381,12 @@ function initCommandPalette() {
   function closePalette() {
     overlay.classList.remove('is-open');
     overlay.setAttribute('aria-hidden', 'true');
+    overlay.inert = true;
     input.value = '';
+    if (lastFocused && typeof lastFocused.focus === 'function') {
+      lastFocused.focus();
+      lastFocused = null;
+    }
   }
 
   function showIntro() {
@@ -504,6 +525,10 @@ function initCommandPalette() {
     }
     if (e.key === 'Escape' && overlay.classList.contains('is-open')) {
       closePalette();
+    }
+    if (e.key === 'Tab' && overlay.classList.contains('is-open')) {
+      e.preventDefault();
+      input.focus();
     }
   });
 

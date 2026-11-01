@@ -1,0 +1,4 @@
+# Keep internal tooling and planning docs out of the public deployment.
+.agent/
+.impeccable/
+PRODUCT.md

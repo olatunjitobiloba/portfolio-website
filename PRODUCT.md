@@ -8,7 +8,7 @@ web
 
 ## Users
 
-Recruiters and engineering hiring managers evaluating candidates for backend and software engineering internship roles. They arrive via a LinkedIn link, GitHub profile, or direct URL, typically on a laptop during a screening pass, and need to quickly judge technical credibility, project quality, and communication ability.
+Recruiters and engineering hiring managers evaluating early-career candidates for AI engineering and forward-deployed engineering roles. They arrive via a LinkedIn link, GitHub profile, or direct URL, typically on a laptop during a screening pass, and need to quickly judge technical credibility, project quality, and communication ability.
 
 ## Product Purpose
 
@@ -23,7 +23,7 @@ Every project on the portfolio ships end-to-end (from ML model to deployed API t
 - Four-page static site: Home (hero + selected work + explore cards), Work (full project gallery), About (bio, education, experience, skills), Reads (book list).
 - Deployed on Vercel (`vercel.json` with clean URLs and CV download headers).
 - "Ask Tobi" command palette (⌘K) answers visitor questions about the owner.
-- Dark theme with green intro curtain animation, dot-grid noise texture, DM Sans body, Instrument Serif display, scroll-reveal transitions.
+- Dark theme with a green accent, noise texture, DM Sans body, Instrument Serif display, scroll-reveal transitions.
 - CV served as a downloadable PDF from the same domain.
 
 ## Capabilities and Constraints
@@ -38,7 +38,7 @@ Every project on the portfolio ships end-to-end (from ML model to deployed API t
 
 - Name: **Oluwatobiloba Olatunji** (short: Tobi).
 - Voice: direct, technical, evidence-first, zero hype. Lets the work speak.
-- Tagline pattern: "Building things that [rotating word]." (work / scale / last / matter).
+- Tagline pattern: "Building AI that [rotating word]." (ships / scales / lasts).
 - Green accent inherited from Covenant University identity; not rigidly specified.
 - DM Sans + Instrument Serif are the current type pair.
 
@@ -49,7 +49,7 @@ Every project on the portfolio ships end-to-end (from ML model to deployed API t
 - **Profile photo:** `images/profile.jpg`.
 - **Project screenshots:** `images/focuspilot.png`, `images/loan-api.png`, `images/finsight.png`, `images/heroes-conference.png`, `images/fedrec.png`.
 - **Book covers:** local images in `reads/` and OpenLibrary URLs.
-- **CV:** `Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf`.
+- **CV:** `Oluwatobiloba_Olatunji_AI_Engineer_CV.pdf`.
 - No fabricated testimonials, customer logos, or usage metrics exist; future work must not invent them.
 
 ## Product Principles
