@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import {
   engineeringExperience,
   leadershipExperience,
@@ -37,13 +38,24 @@ export default function AboutPage() {
 
       {/* Narrative Bio */}
       <section className="space-y-6" aria-label="Narrative bio">
-        <div className="prose prose-neutral max-w-none">
-          <p className="text-base sm:text-lg text-ink-secondary leading-relaxed">
-            I&apos;m an AI engineer in Lagos. I take models from notebook to
-            production: training and evaluating with scikit-learn, serving with
-            FastAPI and Flask, testing with pytest, and deploying through
-            Docker and GitHub Actions. Current focus: ML systems for fintech.
-          </p>
+        <div className="flex flex-col sm:flex-row gap-6 items-start">
+          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-black/[0.08] bg-white shadow-sm ring-4 ring-white shrink-0">
+            <Image
+              src="/images/profile.jpg"
+              alt="Oluwatobiloba Olatunji"
+              fill
+              className="object-cover"
+              sizes="112px"
+            />
+          </div>
+          <div className="prose prose-neutral max-w-none flex-1">
+            <p className="text-base sm:text-lg text-ink-secondary leading-relaxed">
+              I&apos;m an AI engineer in Lagos. I take models from notebook to
+              production: training and evaluating with scikit-learn, serving with
+              FastAPI and Flask, testing with pytest, and deploying through
+              Docker and GitHub Actions. Current focus: ML systems for fintech.
+            </p>
+          </div>
         </div>
 
         {/* Engineering Process Outline */}

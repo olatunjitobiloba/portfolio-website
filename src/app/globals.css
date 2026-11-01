@@ -3,14 +3,14 @@
 @tailwind utilities;
 
 :root {
-  --canvas: #FBFBFA;
+  --canvas: #F4F3EE;
   --surface: #FFFFFF;
-  --surface-hover: #F5F4F0;
+  --surface-hover: #F8F7F4;
   --border-subtle: rgba(0, 0, 0, 0.08);
   --border-focus: rgba(0, 0, 0, 0.20);
   --ink-primary: #111111;
-  --ink-secondary: #666666;
-  --ink-muted: #888888;
+  --ink-secondary: #555555;
+  --ink-muted: #777777;
 }
 
 html {

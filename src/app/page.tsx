@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, Download, Briefcase, User, BookOpen } from "lucide-react";
 import { RotatingHero } from "@/components/ui/RotatingHero";
 import { ProofStrip } from "@/components/ui/ProofStrip";
@@ -8,37 +9,56 @@ export default function HomePage() {
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-16">
       {/* Hero Section */}
-      <section className="space-y-8 pt-4">
-        {/* Status Pill */}
-        <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white text-xs text-ink-secondary shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-          <span className="font-medium text-ink-primary">AI Engineer</span>
-          <span className="text-black/20">|</span>
-          <span className="inline-flex items-center gap-1.5 text-pastel-green-text font-medium">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
-            <span>Open to AI/ML roles</span>
-          </span>
-        </div>
+      <section className="pt-4 sm:pt-6">
+        <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">
+          {/* Hero Left Content */}
+          <div className="flex-1 space-y-6">
+            {/* Status Pill */}
+            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white text-xs text-ink-secondary shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+              <span className="font-medium text-ink-primary">AI Engineer</span>
+              <span className="text-black/20">|</span>
+              <span className="inline-flex items-center gap-1.5 text-pastel-green-text font-medium">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
+                <span>Open to AI/ML roles</span>
+              </span>
+            </div>
 
-        {/* Rotating Headline */}
-        <RotatingHero />
+            {/* Rotating Headline */}
+            <RotatingHero />
 
-        {/* Primary CTA Buttons */}
-        <div className="flex flex-wrap items-center gap-3 pt-2">
-          <Link
-            href="/work"
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-ink-primary text-white text-sm font-medium hover:bg-black/85 transition-colors shadow-sm"
-          >
-            <span>See deployed work</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-          <a
-            href="/Oluwatobiloba_Olatunji_AI_Engineer_CV.pdf"
-            download
-            className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-black/10 bg-white text-ink-primary text-sm font-medium hover:bg-surface-hover transition-colors shadow-sm"
-          >
-            <span>Download CV</span>
-            <Download className="w-4 h-4" />
-          </a>
+            {/* Primary CTA Buttons */}
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <Link
+                href="/work"
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-ink-primary text-white text-sm font-medium hover:bg-black/85 transition-colors shadow-sm"
+              >
+                <span>See deployed work</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="/Oluwatobiloba_Olatunji_AI_Engineer_CV.pdf"
+                download
+                className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-black/10 bg-white text-ink-primary text-sm font-medium hover:bg-surface-hover transition-colors shadow-sm"
+              >
+                <span>Download CV</span>
+                <Download className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          {/* Hero Profile Photo */}
+          <div className="relative shrink-0 mx-auto md:mx-0">
+            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-2xl overflow-hidden border border-black/[0.08] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] ring-4 ring-white">
+              <Image
+                src="/images/profile.jpg"
+                alt="Oluwatobiloba Olatunji"
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"
+              />
+            </div>
+          </div>
         </div>
       </section>
 

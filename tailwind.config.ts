@@ -9,10 +9,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        canvas: "#FBFBFA",
+        canvas: "#F4F3EE",
         surface: {
           DEFAULT: "#FFFFFF",
-          hover: "#F5F4F0",
+          hover: "#F8F7F4",
         },
         border: {
           subtle: "rgba(0, 0, 0, 0.08)",
