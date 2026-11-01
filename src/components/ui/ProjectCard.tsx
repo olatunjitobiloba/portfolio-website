@@ -25,14 +25,16 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
     >
       <div className="space-y-4">
         {/* Screenshot Thumbnail Container */}
-        <div className="aspect-video rounded-xl overflow-hidden border border-black/[0.08] bg-canvas relative group">
-          <Image
-            src={project.image}
-            alt={project.title}
-            fill
-            className="object-cover group-hover:scale-[1.02] transition-transform duration-300"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-          />
+        <div className="aspect-video rounded-xl overflow-hidden border border-black/[0.08] bg-[#EAE8E2] p-2 relative group flex items-center justify-center">
+          <div className="relative w-full h-full rounded-lg overflow-hidden flex items-center justify-center">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-contain group-hover:scale-[1.03] transition-transform duration-300"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            />
+          </div>
         </div>
 
         {/* Content Block */}

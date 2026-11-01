@@ -44,7 +44,7 @@ export default function AboutPage() {
               src="/images/profile.jpg"
               alt="Oluwatobiloba Olatunji"
               fill
-              className="object-cover"
+              className="object-cover object-top"
               sizes="112px"
             />
           </div>

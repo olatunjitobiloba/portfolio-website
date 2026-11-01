@@ -54,7 +54,7 @@ export default function HomePage() {
                 alt="Oluwatobiloba Olatunji"
                 fill
                 priority
-                className="object-cover"
+                className="object-cover object-top"
                 sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"
               />
             </div>
