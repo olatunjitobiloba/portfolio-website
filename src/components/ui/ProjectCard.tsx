@@ -24,16 +24,31 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
       )}
     >
       <div className="space-y-4">
-        {/* Screenshot Thumbnail Container */}
-        <div className="aspect-video rounded-xl overflow-hidden border border-black/[0.08] bg-[#EAE8E2] p-2 relative group flex items-center justify-center">
-          <div className="relative w-full h-full rounded-lg overflow-hidden flex items-center justify-center">
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-contain group-hover:scale-[1.03] transition-transform duration-300"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            />
+        {/* Browser Chrome Window Mockup */}
+        <div className="rounded-xl overflow-hidden border border-black/[0.1] bg-[#EAE8E2] shadow-[0_2px_8px_rgba(0,0,0,0.04)] group/browser">
+          {/* Browser Top Bar */}
+          <div className="bg-[#DFDDD7] px-3 py-2 border-b border-black/[0.08] flex items-center justify-between gap-2">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-red-400/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-400/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400/80 inline-block" />
+            </div>
+            <div className="bg-white/70 px-3 py-0.5 rounded-md text-[10px] font-mono text-ink-muted truncate max-w-[200px] border border-black/[0.05]">
+              {liveUrl ? liveUrl.replace(/^https?:\/\//, "") : `${project.id}.app`}
+            </div>
+            <div className="w-8" />
+          </div>
+          {/* Screenshot Thumbnail Canvas */}
+          <div className="aspect-[16/9] p-2 sm:p-3 relative flex items-center justify-center">
+            <div className="relative w-full h-full rounded-md overflow-hidden flex items-center justify-center">
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-contain group-hover/browser:scale-[1.03] transition-transform duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            </div>
           </div>
         </div>
 

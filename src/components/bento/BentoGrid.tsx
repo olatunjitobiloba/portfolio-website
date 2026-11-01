@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
-import { ArrowUpRight, Github, Copy, Check } from "lucide-react";
+import React from "react";
+import { ArrowUpRight, Github } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
+import { InferencePlayground } from "@/components/bento/InferencePlayground";
 import { cn } from "@/lib/utils";
 
 interface BentoGridProps {
@@ -70,32 +71,6 @@ export function BentoGrid({ className }: BentoGridProps) {
     },
   };
 
-  // Interactive snippet state for Card 1
-  const [simulatedConfidence, setSimulatedConfidence] = useState("0.886");
-  const [isPinging, setIsPinging] = useState(false);
-  const [copied, setCopied] = useState(false);
-
-  const handleSimulate = (e: React.MouseEvent) => {
-    e.preventDefault();
-    setIsPinging(true);
-    setTimeout(() => {
-      const nextVal = (0.85 + Math.random() * 0.09).toFixed(3);
-      setSimulatedConfidence(nextVal);
-      setIsPinging(false);
-    }, 250);
-  };
-
-  const handleCopy = (e: React.MouseEvent) => {
-    e.preventDefault();
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText(
-        `POST /predict -> 200 OK { "approved": true, "confidence": ${simulatedConfidence} }`
-      );
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
-
   return (
     <section className={cn("w-full", className)}>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -130,46 +105,8 @@ export function BentoGrid({ className }: BentoGridProps) {
               </p>
             </div>
 
-            {/* Interactive Visual Element: Code/Response snippet */}
-            <div className="font-mono text-xs bg-canvas p-3 rounded-xl border border-black/[0.06] text-ink-secondary space-y-2">
-              <div className="flex items-center justify-between text-[11px] text-ink-muted border-b border-black/[0.04] pb-1.5">
-                <div className="flex items-center gap-1.5">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 inline-block animate-pulse" />
-                  <span className="font-medium">Live Inference Payload</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={handleSimulate}
-                    type="button"
-                    title="Simulate inference request"
-                    className="hover:text-ink-primary transition-colors text-[10px] font-mono px-1.5 py-0.5 rounded bg-black/[0.03] hover:bg-black/[0.06]"
-                  >
-                    {isPinging ? "Computing..." : "Test Request"}
-                  </button>
-                  <button
-                    onClick={handleCopy}
-                    type="button"
-                    title="Copy payload"
-                    className="hover:text-ink-primary transition-colors p-0.5"
-                  >
-                    {copied ? (
-                      <Check className="w-3.5 h-3.5 text-emerald-600" />
-                    ) : (
-                      <Copy className="w-3.5 h-3.5 text-ink-muted" />
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center gap-2">
-                <span className="font-semibold text-emerald-800 bg-emerald-100/70 px-1.5 py-0.5 rounded text-[10px] border border-emerald-200/50">
-                  POST
-                </span>
-                <span className="text-ink-primary font-medium">/predict</span>
-                <span className="text-ink-muted">-&gt;</span>
-                <span className="text-emerald-600 font-medium">200 OK</span>
-                <span className="text-ink-secondary">{`{ "approved": true, "confidence": ${simulatedConfidence} }`}</span>
-              </div>
-            </div>
+            {/* Interactive Visual Element: Live Inference Playground */}
+            <InferencePlayground />
 
             {/* Tech Tags */}
             <div className="flex flex-wrap gap-1.5 pt-1">

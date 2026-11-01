@@ -4,6 +4,8 @@ import { ArrowRight, Download, Briefcase, User, BookOpen } from "lucide-react";
 import { RotatingHero } from "@/components/ui/RotatingHero";
 import { ProofStrip } from "@/components/ui/ProofStrip";
 import { BentoGrid } from "@/components/bento/BentoGrid";
+import { LagosClock } from "@/components/ui/LagosClock";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export default function HomePage() {
   return (
@@ -13,14 +15,17 @@ export default function HomePage() {
         <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">
           {/* Hero Left Content */}
           <div className="flex-1 space-y-6">
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white text-xs text-ink-secondary shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
-              <span className="font-medium text-ink-primary">AI Engineer</span>
-              <span className="text-black/20">|</span>
-              <span className="inline-flex items-center gap-1.5 text-pastel-green-text font-medium">
-                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
-                <span>Open to AI/ML roles</span>
-              </span>
+            {/* Status Pills Row */}
+            <div className="flex flex-wrap items-center gap-2.5">
+              <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-black/[0.08] bg-white text-xs text-ink-secondary shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+                <span className="font-medium text-ink-primary">AI Engineer</span>
+                <span className="text-black/20">|</span>
+                <span className="inline-flex items-center gap-1.5 text-pastel-green-text font-medium">
+                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse inline-block" />
+                  <span>Open to AI/ML roles</span>
+                </span>
+              </div>
+              <LagosClock />
             </div>
 
             {/* Rotating Headline */}
@@ -46,18 +51,20 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Hero Profile Photo */}
+          {/* Hero Profile Photo with 3D Tilt */}
           <div className="relative shrink-0 mx-auto md:mx-0">
-            <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-2xl overflow-hidden border border-black/[0.08] bg-white shadow-[0_4px_20px_rgba(0,0,0,0.06)] ring-4 ring-white">
-              <Image
-                src="/images/profile.jpg"
-                alt="Oluwatobiloba Olatunji"
-                fill
-                priority
-                className="object-cover object-top"
-                sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"
-              />
-            </div>
+            <TiltCard tiltAmount={12} className="cursor-pointer">
+              <div className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 rounded-2xl overflow-hidden border border-black/[0.08] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.08)] ring-4 ring-white">
+                <Image
+                  src="/images/profile.jpg"
+                  alt="Oluwatobiloba Olatunji"
+                  fill
+                  priority
+                  className="object-cover object-top"
+                  sizes="(max-width: 640px) 144px, (max-width: 768px) 176px, 208px"
+                />
+              </div>
+            </TiltCard>
           </div>
         </div>
       </section>

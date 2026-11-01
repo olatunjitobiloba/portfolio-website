@@ -7,6 +7,7 @@ import {
 } from "@/data/experience";
 import { skillCategories } from "@/data/skills";
 import { GraduationCap, Award, ArrowRight, CheckCircle2 } from "lucide-react";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export const metadata: Metadata = {
   title: "About | Oluwatobiloba Olatunji",
@@ -39,15 +40,17 @@ export default function AboutPage() {
       {/* Narrative Bio */}
       <section className="space-y-6" aria-label="Narrative bio">
         <div className="flex flex-col sm:flex-row gap-6 items-start">
-          <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-black/[0.08] bg-white shadow-sm ring-4 ring-white shrink-0">
-            <Image
-              src="/images/profile.jpg"
-              alt="Oluwatobiloba Olatunji"
-              fill
-              className="object-cover object-top"
-              sizes="112px"
-            />
-          </div>
+          <TiltCard tiltAmount={10} className="shrink-0">
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border border-black/[0.08] bg-white shadow-sm ring-4 ring-white">
+              <Image
+                src="/images/profile.jpg"
+                alt="Oluwatobiloba Olatunji"
+                fill
+                className="object-cover object-top"
+                sizes="112px"
+              />
+            </div>
+          </TiltCard>
           <div className="prose prose-neutral max-w-none flex-1">
             <p className="text-base sm:text-lg text-ink-secondary leading-relaxed">
               I&apos;m an AI engineer in Lagos. I take models from notebook to
