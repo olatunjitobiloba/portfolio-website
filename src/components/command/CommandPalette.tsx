@@ -23,10 +23,29 @@ export interface CommandPaletteProps {
   setOpen?: (open: boolean) => void;
 }
 
+const SEARCH_PROMPTS = [
+  "Type a command or search...",
+  "Try 'Loan Prediction API'...",
+  "Try 'MLOps Pipeline'...",
+  "Try 'FocusPilot Extension'...",
+  "Try 'Covenant University'...",
+  "Try 'Download CV'...",
+  "Try 'Email me'...",
+];
+
 export function CommandPalette({ open: openProp, setOpen: setOpenProp }: CommandPaletteProps) {
   const router = useRouter();
   const [internalOpen, setInternalOpen] = useState(false);
   const [copiedAnswer, setCopiedAnswer] = useState<string | null>(null);
+  const [promptIndex, setPromptIndex] = useState(0);
+
+  // Animated cycling search placeholders (inspired by Abraham Adelodun & ReactBits)
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setPromptIndex((prev) => (prev + 1) % SEARCH_PROMPTS.length);
+    }, 2200);
+    return () => clearInterval(interval);
+  }, []);
 
   const isControlled = openProp !== undefined;
   const isOpen = isControlled ? openProp : internalOpen;
@@ -134,8 +153,8 @@ export function CommandPalette({ open: openProp, setOpen: setOpenProp }: Command
           <div className="flex items-center px-4 border-b border-black/[0.08]">
             <Search className="w-4 h-4 text-ink-muted mr-3 shrink-0" />
             <Command.Input
-              placeholder="Type a command or search..."
-              className="w-full py-3.5 text-sm text-ink-primary placeholder:text-ink-muted bg-transparent focus:outline-none"
+              placeholder={SEARCH_PROMPTS[promptIndex]}
+              className="w-full py-3.5 text-sm text-ink-primary placeholder:text-ink-muted bg-transparent focus:outline-none transition-all duration-300"
             />
             <button
               type="button"

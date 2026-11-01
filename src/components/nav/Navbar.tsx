@@ -72,9 +72,10 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
           type="button"
           onClick={handleOpenCommand}
           aria-label="Open command palette"
-          className="shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded"
+          className="shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded cursor-pointer group"
         >
-          <kbd className="text-[11px] font-mono bg-black/5 hover:bg-black/10 px-2 py-0.5 rounded border border-black/10 text-ink-secondary flex items-center gap-1 transition-colors">
+          <kbd className="text-[11px] font-mono bg-black/5 hover:bg-black/10 px-2 py-0.5 rounded border border-black/10 text-ink-secondary flex items-center gap-1.5 transition-colors">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>⌘K</span>
           </kbd>
         </button>
