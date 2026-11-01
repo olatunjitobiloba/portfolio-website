@@ -1,6 +1,12 @@
 # Dependencies
 node_modules/
 
+# Playwright Test Artifacts
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
 # OS files
 .DS_Store
 Thumbs.db
@@ -36,3 +42,8 @@ desktop.ini
 .impeccable/live/deferred-svelte-component-accepts.json
 .impeccable/live/*.png
 # impeccable-ignore-end
+
+# Antigravity agent rules and workspace customizations
+.agents/
+AGENTS.md
+

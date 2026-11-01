@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Work | Oluwatobiloba Olatunji</title>
-<meta name="description" content="Selected projects by Oluwatobiloba Olatunji — APIs, AI applications, event platforms, and embedded systems.">
+<title>Work | Oluwatobiloba Olatunji · AI Engineer</title>
+<meta name="description" content="Systems designed, deployed, and run for real users by Oluwatobiloba Olatunji — AI Engineer, Forward Deployed.">
 <meta name="theme-color" content="#0a0f0d">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,7 +24,7 @@
       <a href="work.html">Work</a>
       <a href="about.html">About</a>
       <a href="reads.html">Reads</a>
-      <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download>CV</a>
+      <a href="Oluwatobiloba_Olatunji_AI_Engineer_CV.pdf" download>CV</a>
     </nav>
     <button class="menu-toggle" id="menu-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Menu">
       <span></span><span></span>
@@ -36,7 +36,7 @@
   <a href="work.html">Work</a>
   <a href="about.html">About</a>
   <a href="reads.html">Reads</a>
-  <a href="Oluwatobiloba_Olatunji_Backend_Engineer_2026_CV.pdf" download>Download CV</a>
+  <a href="Oluwatobiloba_Olatunji_AI_Engineer_CV.pdf" download>Download CV</a>
   <div class="mobile-meta">
     <a href="https://github.com/olatunjitobiloba" target="_blank" rel="noreferrer">GitHub</a>
     <a href="https://www.linkedin.com/in/olatunji-oluwatobiloba-186659291/" target="_blank" rel="noreferrer">LinkedIn</a>
@@ -52,13 +52,53 @@
       <div class="page-header reveal">
         <a href="index.html" class="back-link">&larr; Home</a>
         <h1>Selected Work</h1>
-        <p class="page-sub">APIs, AI applications, event platforms, and embedded systems.</p>
+        <p class="page-sub">ML systems, inference APIs, and AI products in production.</p>
       </div>
 
       <div class="projects-grid">
 
-        <!-- FocusPilot (featured) -->
+        <!-- 1. Loan Prediction API (featured) -->
         <article class="project-card featured reveal-scale">
+          <div class="project-media">
+            <a href="https://loan-predictor-api-91xu.onrender.com/app" target="_blank" rel="noreferrer">
+              <img src="images/loan-api.png" alt="Loan Prediction API showing 88.6% accuracy and test coverage metrics" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h2>
+              Loan Prediction API
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </h2>
+            <p>Random Forest loan-approval model served over Flask. 88.6% accuracy, pytest suite, deployed on Render with live demo.</p>
+            <div class="project-tags">
+              <span>Flask</span><span>scikit-learn</span><span>pytest</span>
+            </div>
+            <p class="project-status"><span class="status-badge status-live">Live</span> Render</p>
+          </div>
+        </article>
+
+        <!-- 2. MLOps Pipeline -->
+        <article class="project-card reveal-scale" style="transition-delay:0.1s">
+          <div class="project-media">
+            <a href="https://github.com/olatunjitobiloba/MLOps-Pipeline" target="_blank" rel="noreferrer">
+              <img src="images/mlops.png" alt="MLOps Pipeline with automated CI/CD" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h2>
+              MLOps Pipeline
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </h2>
+            <p>GitHub Actions pipeline that tests, builds, and deploys a model container on every push, with monitoring hooks.</p>
+            <div class="project-tags">
+              <span>Docker</span><span>GitHub Actions</span><span>CI/CD</span><span>Python</span>
+            </div>
+            <p class="project-status"><span class="status-badge status-live">Live</span> GitHub Actions · Docker</p>
+          </div>
+        </article>
+
+        <!-- 3. FocusPilot -->
+        <article class="project-card reveal-scale" style="transition-delay:0.15s">
           <div class="project-media">
             <a href="https://focuspilot.vercel.app" target="_blank" rel="noreferrer">
               <img src="images/focuspilot.png" alt="FocusPilot dashboard showing live session snapshot with context detection, risk predictor, and agent action features" loading="lazy">
@@ -67,74 +107,18 @@
           <div class="project-info">
             <h2>
               FocusPilot
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
             </h2>
-            <p>Productivity platform combining a React dashboard, FastAPI backend, and Chrome extension with a four-factor distraction scorer.</p>
+            <p>Deployed productivity system: Chrome extension streams activity to a FastAPI backend; a four-factor scorer flags distraction in real time on a React dashboard.</p>
             <div class="project-tags">
               <span>FastAPI</span><span>React</span><span>Chrome Extension</span>
             </div>
+            <p class="project-status"><span class="status-badge status-live">Live</span> Vercel · Render</p>
           </div>
         </article>
 
-        <!-- Loan Prediction API -->
-        <article class="project-card reveal-scale" style="transition-delay:0.1s">
-          <div class="project-media">
-            <a href="https://loan-predictor-api-91xu.onrender.com/app" target="_blank" rel="noreferrer">
-              <img src="images/loan-api.png" alt="Loan Prediction API showing 88.62% accuracy and test coverage metrics" loading="lazy">
-            </a>
-          </div>
-          <div class="project-info">
-            <h2>
-              Loan Prediction API
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </h2>
-            <p>Flask API serving loan-approval predictions. Random Forest classifier, 88.62% accuracy, pytest coverage.</p>
-            <div class="project-tags">
-              <span>Flask</span><span>scikit-learn</span><span>pytest</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- FinSight AI -->
-        <article class="project-card reveal-scale" style="transition-delay:0.15s">
-          <div class="project-media">
-            <a href="https://finsightng.vercel.app/" target="_blank" rel="noreferrer">
-              <img src="images/finsight.png" alt="FinSight AI landing page with financial intelligence features" loading="lazy">
-            </a>
-          </div>
-          <div class="project-info">
-            <h2>
-              FinSight AI
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </h2>
-            <p>Hackathon financial intelligence platform for predictions and spending analysis.</p>
-            <div class="project-tags">
-              <span>React</span><span>Python</span><span>AI</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- Heroes Conference -->
+        <!-- 4. FedRec -->
         <article class="project-card reveal-scale" style="transition-delay:0.2s">
-          <div class="project-media">
-            <a href="https://heroesconference26.vercel.app" target="_blank" rel="noreferrer">
-              <img src="images/heroes-conference.png" alt="Heroes Conference raffle draw platform with real-time polling" loading="lazy">
-            </a>
-          </div>
-          <div class="project-info">
-            <h2>
-              Heroes Conference '26
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-            </h2>
-            <p>Live raffle platform with real-time polling, protected admin controls, and 500+ concurrent users.</p>
-            <div class="project-tags">
-              <span>React</span><span>Supabase</span><span>Real-time</span>
-            </div>
-          </div>
-        </article>
-
-        <!-- FedRec -->
-        <article class="project-card reveal-scale" style="transition-delay:0.25s">
           <div class="project-media">
             <a href="https://github.com/olatunjitobiloba/FedRec-Privacy-First-Recommendation-Engine" target="_blank" rel="noreferrer">
               <img src="images/fedrec.png" alt="FedRec privacy-first recommendation engine dashboard" loading="lazy">
@@ -143,12 +127,53 @@
           <div class="project-info">
             <h2>
               FedRec
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
             </h2>
-            <p>Federated recommendation research with privacy-first architecture and differential privacy controls.</p>
+            <p>Federated recommendation engine. Clients train locally; only differentially private updates leave the device.</p>
             <div class="project-tags">
-              <span>Python</span><span>Federated Learning</span><span>Research</span>
+              <span>Python</span><span>Federated Learning</span><span>Differential Privacy</span>
             </div>
+            <p class="project-status"><span class="status-badge status-research">Research</span> GitHub</p>
+          </div>
+        </article>
+
+        <!-- 5. FinSight AI -->
+        <article class="project-card reveal-scale" style="transition-delay:0.25s">
+          <div class="project-media">
+            <a href="https://finsightng.vercel.app/" target="_blank" rel="noreferrer">
+              <img src="images/finsight.png" alt="FinSight AI landing page with financial intelligence features" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h2>
+              FinSight AI
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </h2>
+            <p>Hackathon financial intelligence platform: spending analysis and AI-driven predictions for Nigerian consumers.</p>
+            <div class="project-tags">
+              <span>React</span><span>Python</span><span>scikit-learn</span><span>FastAPI</span>
+            </div>
+            <p class="project-status"><span class="status-badge status-archived">Archived</span> Vercel</p>
+          </div>
+        </article>
+
+        <!-- 6. Heroes Conference -->
+        <article class="project-card reveal-scale" style="transition-delay:0.3s">
+          <div class="project-media">
+            <a href="https://heroesconference26.vercel.app" target="_blank" rel="noreferrer">
+              <img src="images/heroes-conference.png" alt="Heroes Conference raffle draw platform with real-time polling" loading="lazy">
+            </a>
+          </div>
+          <div class="project-info">
+            <h2>
+              Heroes Conference '26
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+            </h2>
+            <p>Live event platform for 500+ concurrent users. Real-time raffle, polling, and protected admin controls — zero downtime during the event.</p>
+            <div class="project-tags">
+              <span>React</span><span>Supabase</span><span>Real-time</span>
+            </div>
+            <p class="project-status"><span class="status-badge status-live">Live</span> Vercel · Supabase</p>
           </div>
         </article>
 
@@ -156,24 +181,17 @@
 
       <!-- More projects (text-only) -->
       <div class="more-projects reveal">
-        <a href="https://github.com/olatunjitobiloba/data-science-projects" target="_blank" rel="noreferrer" class="more-project-link">
-          <div>
-            <span class="mp-name">Data Science Projects</span>
-            <span class="mp-desc">Analysis, visualization, and ML experiments across multiple datasets</span>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-        </a>
-        <a href="https://github.com/olatunjitobiloba/MLOps-Pipeline" target="_blank" rel="noreferrer" class="more-project-link">
-          <div>
-            <span class="mp-name">MLOps Pipeline</span>
-            <span class="mp-desc">CI/CD pipeline for machine learning model deployment and monitoring</span>
-          </div>
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
-        </a>
         <a href="https://github.com/olatunjitobiloba/Speed-Detector" target="_blank" rel="noreferrer" class="more-project-link">
           <div>
             <span class="mp-name">IoT Vehicle Speed Detector</span>
             <span class="mp-desc">Embedded prototype with IR sensors, 2nd place in IoT competition</span>
+          </div>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
+        </a>
+        <a href="https://github.com/olatunjitobiloba/data-science-projects" target="_blank" rel="noreferrer" class="more-project-link">
+          <div>
+            <span class="mp-name">Data Science Projects</span>
+            <span class="mp-desc">Analysis, visualization, and ML experiments across multiple datasets</span>
           </div>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>
         </a>
@@ -196,8 +214,8 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-cta reveal">
-      <h2>Say hello.</h2>
-      <p>Looking for internship opportunities and open to collaborating on projects that involve real engineering problems.</p>
+      <h2>Let's build something that runs in production.</h2>
+      <p>Open to AI engineering roles and contract work: ML APIs, model deployment, and AI product builds. If you have a real problem with real data, write to me.</p>
       <a href="mailto:olatunjitobiloba05@gmail.com" class="email-link">
         olatunjitobiloba05@gmail.com
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg>

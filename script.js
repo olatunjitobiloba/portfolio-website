@@ -105,7 +105,7 @@ function initRotatingWord() {
   var wordEl = document.getElementById('rotating-word');
   if (!wordEl) return;
 
-  var words = ['work.', 'scale.', 'last.'];
+  var words = ['ships.', 'scales.', 'lasts.'];
   var index = 0;
 
   setInterval(function() {
@@ -254,23 +254,23 @@ function initCommandPalette() {
 
   var selectedIndex = -1;
 
-  var introText = "I'm Tobi, a digital version of Oluwatobiloba. I know about his projects, skills, and experience. What would you like to know?";
+  var introText = "I'm Tobi, a digital version of Oluwatobiloba. I know about his deployments, skills, and experience. Ask me anything.";
 
   var qa = [
     {
       question: 'who is toby',
       keywords: ['who', 'toby', 'tobi', 'oluwatobiloba', 'about him'],
-      answer: 'Oluwatobiloba Olatunji is a Computer Engineering student at Covenant University in Lagos, Nigeria. He builds Python APIs, AI applications, event platforms, and the occasional embedded system. Currently interning at Union Bank of Nigeria.'
+      answer: 'Oluwatobiloba Olatunji is an AI engineer in Lagos, Nigeria. He builds AI systems and deploys them end to end — APIs, ML models, real-time platforms, and browser tooling. He is completing a B.Eng. in Computer Engineering at Covenant University alongside this work.'
     },
     {
       question: 'what are his skills',
       keywords: ['skills', 'tech', 'stack', 'tools', 'technologies', 'languages'],
-      answer: 'Python is his primary language. He works with FastAPI, Flask, React, scikit-learn, Docker, Supabase, and SQLAlchemy. He writes tests with pytest and documents everything. Also comfortable with AutoCAD and Fusion 360 from his engineering background.'
+      answer: 'Python is his primary language. AI & ML: scikit-learn, Pandas, NumPy, Federated Learning, model serving. Backend & Deployment: FastAPI, Flask, Docker, GitHub Actions, Supabase, SQLAlchemy, Render, Vercel. Frontend: React, JavaScript, Chrome Extensions. Quality: pytest, Postman, technical docs.'
     },
     {
       question: 'show me his projects',
       keywords: ['projects', 'work', 'portfolio', 'built'],
-      answer: 'His main projects include FocusPilot (productivity platform with Chrome extension), a Loan Prediction API (88.62% accuracy), FinSight AI (hackathon build), FedRec (federated learning research), Heroes Conference platform, and an IoT Vehicle Speed Detector.',
+      answer: 'His deployed systems include FocusPilot (three-surface productivity platform), a Loan Prediction API live on Render (88.6% accuracy), Heroes Conference platform (500+ concurrent users), FedRec (federated learning research), and an MLOps pipeline with CI/CD.',
       action: function() { window.location.href = 'work.html'; }
     },
     {
@@ -281,7 +281,7 @@ function initCommandPalette() {
     {
       question: 'how can i contact him',
       keywords: ['contact', 'email', 'reach', 'hire', 'message'],
-      answer: 'Email: olatunjitobiloba05@gmail.com. You can also connect on LinkedIn. He is looking for internship opportunities and open to collaboration.',
+      answer: 'Email: olatunjitobiloba05@gmail.com. You can also connect on LinkedIn. He is open to AI Engineer and Forward Deployed Engineer roles.',
       action: function() { window.open('mailto:olatunjitobiloba05@gmail.com'); }
     },
     {
@@ -304,7 +304,7 @@ function initCommandPalette() {
     {
       question: 'what is his experience',
       keywords: ['experience', 'work history', 'intern', 'job', 'career'],
-      answer: 'Currently interning at Union Bank of Nigeria (IT Department). Previously: Graphics Head at CU Technical Crew, Engineering Design Intern (SWEP) at Covenant University, In-Charge of 150+ students at Technical Crew, and Design Engineering Intern at HVAC Solutions Nigeria.',
+      answer: 'IT Intern at Union Bank of Nigeria (enterprise IT). Previously led a 150+ member technical team at Covenant University, running live production for major events. He has deployed systems for live conferences, served ML predictions from production APIs, and shipped a three-surface productivity platform.',
       action: function() { window.location.href = 'about.html'; }
     },
     {
