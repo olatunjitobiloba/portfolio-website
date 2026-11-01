@@ -41,7 +41,7 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
-      <body className="min-h-screen bg-canvas text-ink-primary font-sans antialiased selection:bg-black selection:text-white relative">
+      <body className="min-h-screen text-ink-primary font-sans antialiased selection:bg-black selection:text-white relative">
         <IntroCurtain />
         <StaticBackground />
         <SmoothScroll>
