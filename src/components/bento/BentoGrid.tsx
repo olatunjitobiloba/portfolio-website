@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
@@ -13,7 +14,7 @@ interface BentoGridProps {
 }
 
 export function BentoGrid({ className }: BentoGridProps) {
-  // Consumes data from @/data/projects with reliable fallbacks matching specification
+  // Consumes data from @/data/projects with reliable fallbacks
   const loanProject = projects.find((p) => p.id === "loan-prediction-api") || {
     id: "loan-prediction-api",
     title: "Loan Prediction API",
@@ -21,6 +22,7 @@ export function BentoGrid({ className }: BentoGridProps) {
     description:
       "Production Flask API serving Random Forest loan qualification decisions with automated data validation and complete pytest coverage.",
     status: "Live" as const,
+    image: "/images/loan-api.png",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
     links: {
       live: "https://loan-predictor-api-91xu.onrender.com/app",
@@ -35,6 +37,7 @@ export function BentoGrid({ className }: BentoGridProps) {
     description:
       "Automated model evaluation and deployment pipeline with GitHub Actions, lint checks, test suites, and Docker containerization.",
     status: "Production" as const,
+    image: "/images/mlops.png",
     metrics: "Automated CI/CD · Dockerized",
     tags: ["GitHub Actions", "Docker", "pytest", "MLOps"],
     links: {
@@ -49,6 +52,7 @@ export function BentoGrid({ className }: BentoGridProps) {
     description:
       "Focus and distraction management extension for developers and students with real-time Supabase cloud sync.",
     status: "Live" as const,
+    image: "/images/focuspilot.png",
     metrics: "Real-time sync · Active user base",
     tags: ["Chrome API", "Supabase", "JavaScript"],
     links: {
@@ -64,6 +68,7 @@ export function BentoGrid({ className }: BentoGridProps) {
     description:
       "Privacy-preserving recommendation engine research project using decentralized training across edge nodes without exposing raw user data.",
     status: "Research" as const,
+    image: "/images/fedrec.png",
     metrics: "Federated Learning · Privacy-First",
     tags: ["Python", "Federated Learning", "PyTorch", "NumPy"],
     links: {
@@ -74,7 +79,7 @@ export function BentoGrid({ className }: BentoGridProps) {
 
   return (
     <section className={cn("w-full", className)}>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* =========================================================================
             CARD 1 (md:col-span-2): Loan Prediction API (FLAGSHIP / STAR SYSTEM)
             ========================================================================= */}
@@ -110,67 +115,91 @@ export function BentoGrid({ className }: BentoGridProps) {
                 <Badge status={loanProject.status} />
               </div>
 
-            {/* Title with Lucide ArrowUpRight */}
-            <div>
-              <h3 className="text-xl font-semibold text-ink-primary group-hover:text-black flex items-center gap-2">
+              {/* Title with Lucide ArrowUpRight */}
+              <div>
+                <h3 className="text-xl font-semibold text-ink-primary group-hover:text-black flex items-center gap-2">
+                  <a
+                    href={loanProject.links.live || loanProject.links.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline flex items-center gap-1.5"
+                  >
+                    <span>{loanProject.title}</span>
+                    <ArrowUpRight className="w-5 h-5 text-ink-muted group-hover:text-ink-primary transition-colors shrink-0" />
+                  </a>
+                </h3>
+                <p className="text-sm text-ink-secondary leading-relaxed mt-2">
+                  {loanProject.description}
+                </p>
+              </div>
+
+              {/* Real Project Screenshot in Browser Window Mockup */}
+              <div className="rounded-xl overflow-hidden border border-black/[0.08] bg-[#EAE8E2] shadow-sm">
+                <div className="bg-[#DFDDD7] px-3 py-1.5 border-b border-black/[0.06] flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-red-400/80 inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-amber-400/80 inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-emerald-400/80 inline-block" />
+                  </div>
+                  <span className="text-[10px] font-mono text-ink-muted truncate max-w-[240px]">
+                    loan-predictor-api-91xu.onrender.com/app
+                  </span>
+                  <div className="w-6" />
+                </div>
+                <div className="relative aspect-[16/8] sm:aspect-[2.4/1] w-full bg-canvas/40 flex items-center justify-center p-2">
+                  <Image
+                    src={loanProject.image || "/images/loan-api.png"}
+                    alt={loanProject.title}
+                    fill
+                    className="object-contain"
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                  />
+                </div>
+              </div>
+
+              {/* Interactive Visual Element: Live Inference Playground */}
+              <InferencePlayground />
+
+              {/* Tech Tags */}
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {loanProject.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs font-mono text-ink-secondary bg-black/[0.03] px-2 py-0.5 rounded border border-black/[0.06]"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Outbound Links */}
+            <div className="flex items-center gap-2.5 pt-4 mt-4 border-t border-black/[0.04]">
+              {loanProject.links.live && (
                 <a
-                  href={loanProject.links.live || loanProject.links.github}
+                  href={loanProject.links.live}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:underline flex items-center gap-1.5"
+                  className="group/btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-primary bg-black/[0.04] hover:bg-black hover:text-white border border-black/[0.08] transition-all hover:scale-[1.03] active:scale-[0.98]"
                 >
-                  <span>{loanProject.title}</span>
-                  <ArrowUpRight className="w-5 h-5 text-ink-muted group-hover:text-ink-primary transition-colors shrink-0" />
+                  <span>Live API on Render</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
                 </a>
-              </h3>
-              <p className="text-sm text-ink-secondary leading-relaxed mt-2">
-                {loanProject.description}
-              </p>
-            </div>
-
-            {/* Interactive Visual Element: Live Inference Playground */}
-            <InferencePlayground />
-
-            {/* Tech Tags */}
-            <div className="flex flex-wrap gap-1.5 pt-1">
-              {loanProject.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className="text-xs font-mono text-ink-secondary bg-black/[0.03] px-2 py-0.5 rounded border border-black/[0.06]"
+              )}
+              {loanProject.links.github && (
+                <a
+                  href={loanProject.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group/git inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-secondary hover:text-ink-primary hover:bg-black/[0.06] border border-black/[0.06] transition-all hover:scale-[1.03] active:scale-[0.98]"
                 >
-                  {tag}
-                </span>
-              ))}
+                  <Github className="w-3.5 h-3.5 group-hover/git:rotate-12 transition-transform" />
+                  <span>GitHub</span>
+                </a>
+              )}
             </div>
-          </div>
-
-          {/* Outbound Links */}
-          <div className="flex items-center gap-2.5 pt-4 mt-4 border-t border-black/[0.04]">
-            {loanProject.links.live && (
-              <a
-                href={loanProject.links.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-primary bg-black/[0.04] hover:bg-black hover:text-white border border-black/[0.08] transition-all hover:scale-[1.03] active:scale-[0.98]"
-              >
-                <span>Live API on Render</span>
-                <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
-              </a>
-            )}
-            {loanProject.links.github && (
-              <a
-                href={loanProject.links.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/git inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-secondary hover:text-ink-primary hover:bg-black/[0.06] border border-black/[0.06] transition-all hover:scale-[1.03] active:scale-[0.98]"
-              >
-                <Github className="w-3.5 h-3.5 group-hover/git:rotate-12 transition-transform" />
-                <span>GitHub</span>
-              </a>
-            )}
-          </div>
-        </article>
-      </motion.div>
+          </article>
+        </motion.div>
 
         {/* =========================================================================
             CARD 2 (md:col-span-1): MLOps Automated Pipeline
@@ -199,6 +228,30 @@ export function BentoGrid({ className }: BentoGridProps) {
               <p className="text-sm text-ink-secondary leading-relaxed mt-2">
                 {mlopsProject.description}
               </p>
+            </div>
+
+            {/* Real Project Screenshot in Browser Window Mockup */}
+            <div className="rounded-xl overflow-hidden border border-black/[0.08] bg-[#EAE8E2] shadow-sm">
+              <div className="bg-[#DFDDD7] px-3 py-1.5 border-b border-black/[0.06] flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-400/80 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-amber-400/80 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400/80 inline-block" />
+                </div>
+                <span className="text-[10px] font-mono text-ink-muted truncate max-w-[180px]">
+                  github.com/olatunjitobiloba/MLOps
+                </span>
+                <div className="w-4" />
+              </div>
+              <div className="relative aspect-[16/10] w-full bg-canvas/40 flex items-center justify-center p-2">
+                <Image
+                  src={mlopsProject.image || "/images/mlops.png"}
+                  alt={mlopsProject.title}
+                  fill
+                  className="object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
             </div>
 
             {/* Metric */}
@@ -264,6 +317,30 @@ export function BentoGrid({ className }: BentoGridProps) {
               <p className="text-sm text-ink-secondary leading-relaxed mt-2">
                 {focusPilotProject.description}
               </p>
+            </div>
+
+            {/* Real Project Screenshot in Browser Window Mockup */}
+            <div className="rounded-xl overflow-hidden border border-black/[0.08] bg-[#EAE8E2] shadow-sm">
+              <div className="bg-[#DFDDD7] px-3 py-1.5 border-b border-black/[0.06] flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-400/80 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-amber-400/80 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400/80 inline-block" />
+                </div>
+                <span className="text-[10px] font-mono text-ink-muted truncate max-w-[180px]">
+                  focuspilot.vercel.app
+                </span>
+                <div className="w-4" />
+              </div>
+              <div className="relative aspect-[16/10] w-full bg-canvas/40 flex items-center justify-center p-2">
+                <Image
+                  src={focusPilotProject.image || "/images/focuspilot.png"}
+                  alt={focusPilotProject.title}
+                  fill
+                  className="object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
             </div>
 
             {/* Metric */}
@@ -340,6 +417,30 @@ export function BentoGrid({ className }: BentoGridProps) {
               <p className="text-sm text-ink-secondary leading-relaxed mt-2">
                 {fedrecProject.description}
               </p>
+            </div>
+
+            {/* Real Project Screenshot in Browser Window Mockup */}
+            <div className="rounded-xl overflow-hidden border border-black/[0.08] bg-[#EAE8E2] shadow-sm">
+              <div className="bg-[#DFDDD7] px-3 py-1.5 border-b border-black/[0.06] flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-red-400/80 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-amber-400/80 inline-block" />
+                  <span className="w-2 h-2 rounded-full bg-emerald-400/80 inline-block" />
+                </div>
+                <span className="text-[10px] font-mono text-ink-muted truncate max-w-[240px]">
+                  fedrec-research.internal
+                </span>
+                <div className="w-6" />
+              </div>
+              <div className="relative aspect-[16/8] sm:aspect-[2.4/1] w-full bg-canvas/40 flex items-center justify-center p-2">
+                <Image
+                  src={fedrecProject.image || "/images/fedrec.png"}
+                  alt={fedrecProject.title}
+                  fill
+                  className="object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                  sizes="(max-width: 1024px) 100vw, 66vw"
+                />
+              </div>
             </div>
 
             {/* Metric */}

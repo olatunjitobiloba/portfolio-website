@@ -4,9 +4,9 @@ import React, { useEffect, useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
- * Personalized Cinematic Intro Reveal (Dribbble & 21st.dev Studio Grade)
- * Sequences through: "Builder." -> "Thinker." -> "Learner." -> "Oluwatobiloba Olatunji"
- * Always presents smoothly on page load, clickable or skippable with Esc.
+ * Personalized Cinematic Intro Reveal for Oluwatobiloba Olatunji
+ * Sequences through: "Build." -> "Ship." -> "Scale."
+ * Reflecting Tobi's AI engineering ethos: shipping production ML systems with real impact.
  */
 export function IntroCurtain() {
   const [showIntro, setShowIntro] = useState(true);
@@ -21,9 +21,9 @@ export function IntroCurtain() {
   }, []);
 
   useEffect(() => {
-    // Sequence through words: Builder (0) -> Thinker (1) -> Learner (2) -> Final Lockup (3) -> Lift
-    const t1 = setTimeout(() => setStep(1), 750);  // Thinker.
-    const t2 = setTimeout(() => setStep(2), 1500); // Learner.
+    // Sequence through: Build (0) -> Ship (1) -> Scale (2) -> Final Lockup (3) -> Lift
+    const t1 = setTimeout(() => setStep(1), 750);  // Ship.
+    const t2 = setTimeout(() => setStep(2), 1500); // Scale.
     const t3 = setTimeout(() => setStep(3), 2250); // Synthesis lockup
     const t4 = setTimeout(() => handleFinish(), 3300); // Lift away
 
@@ -45,7 +45,7 @@ export function IntroCurtain() {
 
   if (!showIntro) return null;
 
-  const words = ["Builder.", "Thinker.", "Learner."];
+  const words = ["Build.", "Ship.", "Scale."];
 
   return (
     <div
@@ -88,7 +88,7 @@ export function IntroCurtain() {
         <div className="flex-1 flex flex-col items-center justify-center text-center z-10 px-4">
           <AnimatePresence mode="wait">
             {step < 3 ? (
-              // Step 0, 1, 2: Kinetic cycling of "Builder.", "Thinker.", "Learner."
+              // Step 0, 1, 2: Kinetic cycling of "Build.", "Ship.", "Scale."
               <motion.div
                 key={step}
                 initial={{ opacity: 0, y: 32, filter: "blur(6px)" }}
@@ -105,7 +105,7 @@ export function IntroCurtain() {
                 </h1>
               </motion.div>
             ) : (
-              // Step 3: Synthesis Lockup — "Builder · Thinker · Learner" & Oluwatobiloba Olatunji
+              // Step 3: Synthesis Lockup — "Build · Ship · Scale" & Oluwatobiloba Olatunji
               <motion.div
                 key="final-lockup"
                 initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
@@ -116,11 +116,11 @@ export function IntroCurtain() {
               >
                 {/* 3 Pillars Badge */}
                 <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-emerald-400/30 bg-emerald-950/40 text-emerald-300 text-xs font-mono uppercase tracking-widest">
-                  <span>Builder</span>
+                  <span>Build</span>
                   <span className="text-emerald-500">&middot;</span>
-                  <span>Thinker</span>
+                  <span>Ship</span>
                   <span className="text-emerald-500">&middot;</span>
-                  <span>Learner</span>
+                  <span>Scale</span>
                 </div>
 
                 {/* Name */}
@@ -144,7 +144,7 @@ export function IntroCurtain() {
           <span>LAGOS, NG</span>
         </div>
 
-        {/* Fluid Curved Bottom Transition Edge (Awwwards / Dribbble Signature) */}
+        {/* Fluid Curved Bottom Transition Edge */}
         <div className="absolute -bottom-16 left-0 right-0 h-16 pointer-events-none">
           <svg
             viewBox="0 0 1440 80"

@@ -1,28 +1,27 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { BookOpen } from "lucide-react";
 import { reads } from "@/data/reads";
+import { BookCover } from "@/components/ui/BookCover";
 
 export const metadata: Metadata = {
   title: "Reading List & Notes | Oluwatobiloba Olatunji",
   description:
-    "Books on engineering craft, startup strategy, compounding capital, and spiritual conviction.",
+    "Books on engineering craft, distributed systems, spiritual authority, and compounding personal discipline.",
 };
 
 export default function ReadsPage() {
   return (
-    <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       {/* Header */}
       <header className="space-y-3 pt-4">
         <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">
-          Reading
+          Reading List
         </p>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-ink-primary tracking-tight">
-          Reading List &amp; Notes
+          Books &amp; System Takeaways
         </h1>
         <p className="text-base sm:text-lg text-ink-secondary leading-relaxed max-w-2xl">
-          Books on engineering craft, startup strategy, compounding capital,
-          and spiritual conviction.
+          Core reading in distributed systems, high-stakes communication, spiritual authority, and execution discipline.
         </p>
       </header>
 
@@ -37,20 +36,22 @@ export default function ReadsPage() {
             className="rounded-2xl border border-black/[0.08] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] flex gap-4 items-start hover:border-black/20 transition-all duration-200 group"
           >
             <div className="relative w-20 sm:w-24 aspect-[2/3] shrink-0 rounded-lg overflow-hidden border border-black/[0.08] bg-canvas shadow-sm">
-              <Image
+              <BookCover
                 src={book.cover}
                 alt={book.title}
-                fill
-                className="object-cover group-hover:scale-[1.03] transition-transform duration-300"
-                sizes="(max-width: 640px) 80px, 96px"
+                title={book.title}
+                author={book.author}
+                status={book.status}
               />
             </div>
 
             <div className="space-y-2 flex-1 min-w-0">
               <div className="flex items-center justify-between gap-2">
                 <span className="text-[11px] font-mono text-ink-muted uppercase tracking-wider inline-flex items-center gap-1.5">
-                  <BookOpen className="w-3.5 h-3.5 text-ink-muted" />
-                  <span>{book.status}</span>
+                  <BookOpen className="w-3.5 h-3.5 text-emerald-600" />
+                  <span className={book.status === "Reading" ? "text-emerald-700 font-medium" : ""}>
+                    {book.status === "Reading" ? "Currently Reading" : book.status}
+                  </span>
                 </span>
               </div>
 
