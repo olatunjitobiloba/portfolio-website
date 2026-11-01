@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import { Command } from "cmdk";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Search,
   Home,
@@ -38,8 +39,9 @@ export function CommandPalette({ open: openProp, setOpen: setOpenProp }: Command
   const [internalOpen, setInternalOpen] = useState(false);
   const [copiedAnswer, setCopiedAnswer] = useState<string | null>(null);
   const [promptIndex, setPromptIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
-  // Animated cycling search placeholders (inspired by Abraham Adelodun & ReactBits)
+  // Animated cycling search placeholders (inspired by Abraham Adelodun & 21st.dev)
   useEffect(() => {
     const interval = setInterval(() => {
       setPromptIndex((prev) => (prev + 1) % SEARCH_PROMPTS.length);
@@ -60,6 +62,7 @@ export function CommandPalette({ open: openProp, setOpen: setOpenProp }: Command
       }
       if (!nextOpen) {
         setCopiedAnswer(null);
+        setSearchQuery("");
       }
     },
     [isControlled, setOpenProp]
@@ -150,16 +153,37 @@ export function CommandPalette({ open: openProp, setOpen: setOpenProp }: Command
     >
       <div className="bg-white rounded-2xl border border-black/10 shadow-2xl max-w-lg w-full overflow-hidden animate-in fade-in zoom-in-95 duration-150">
         <Command label="Command Palette" className="flex flex-col w-full focus:outline-none">
-          <div className="flex items-center px-4 border-b border-black/[0.08]">
+          <div className="relative flex items-center px-4 border-b border-black/[0.08]">
             <Search className="w-4 h-4 text-ink-muted mr-3 shrink-0" />
-            <Command.Input
-              placeholder={SEARCH_PROMPTS[promptIndex]}
-              className="w-full py-3.5 text-sm text-ink-primary placeholder:text-ink-muted bg-transparent focus:outline-none transition-all duration-300"
-            />
+            <div className="relative flex-1 flex items-center h-12">
+              <Command.Input
+                value={searchQuery}
+                onValueChange={setSearchQuery}
+                className="w-full h-full text-sm text-ink-primary bg-transparent focus:outline-none z-10"
+              />
+
+              {/* 21st.dev / Aceternity Animated Text Flipper Placeholder */}
+              {!searchQuery && (
+                <div className="absolute inset-y-0 left-0 flex items-center pointer-events-none text-sm text-ink-muted overflow-hidden z-0">
+                  <AnimatePresence mode="wait">
+                    <motion.span
+                      key={promptIndex}
+                      initial={{ y: 12, opacity: 0 }}
+                      animate={{ y: 0, opacity: 1 }}
+                      exit={{ y: -12, opacity: 0 }}
+                      transition={{ duration: 0.28, ease: "easeOut" }}
+                      className="truncate"
+                    >
+                      {SEARCH_PROMPTS[promptIndex]}
+                    </motion.span>
+                  </AnimatePresence>
+                </div>
+              )}
+            </div>
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="text-[10px] font-mono text-ink-muted bg-black/5 hover:bg-black/10 px-1.5 py-0.5 rounded border border-black/5 transition-colors cursor-pointer"
+              className="text-[10px] font-mono text-ink-muted bg-black/5 hover:bg-black/10 px-1.5 py-0.5 rounded border border-black/5 transition-colors cursor-pointer shrink-0 ml-2 z-10"
             >
               ESC
             </button>
@@ -172,13 +196,7 @@ export function CommandPalette({ open: openProp, setOpen: setOpenProp }: Command
               <button
                 key={tag}
                 type="button"
-                onClick={() => {
-                  const input = document.querySelector<HTMLInputElement>("[cmdk-input]");
-                  if (input) {
-                    input.value = tag;
-                    input.dispatchEvent(new Event("input", { bubbles: true }));
-                  }
-                }}
+                onClick={() => setSearchQuery(tag)}
                 className="px-2 py-0.5 rounded-full bg-white hover:bg-black/5 text-ink-secondary hover:text-ink-primary border border-black/[0.06] transition-colors shrink-0 cursor-pointer"
               >
                 {tag}
