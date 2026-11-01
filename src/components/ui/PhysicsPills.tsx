@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState, useCallback } from "react";
 import Matter from "matter-js";
 import { RotateCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { getStackIconDataUri } from "@/data/stackIcons";
 
 interface SkillPill {
   id: string;
@@ -85,6 +86,14 @@ export function PhysicsPills({ className }: { className?: string }) {
     });
     engineRef.current = engine;
 
+    // Pre-cache authentic SVG logos for canvas rendering
+    const iconMap: Record<string, HTMLImageElement> = {};
+    for (const item of SKILL_ITEMS) {
+      const img = new Image();
+      img.src = getStackIconDataUri(item.label);
+      iconMap[item.label] = img;
+    }
+
     // Create Canvas Renderer (1:1 coordinate space for 100% pointer accuracy)
     const render = Render.create({
       element: container,
@@ -145,15 +154,16 @@ export function PhysicsPills({ className }: { className?: string }) {
 
     // Staggered cascade from above view
     const pillBodies: Matter.Body[] = SKILL_ITEMS.map((item, index) => {
-      const pillWidth = Math.max(94, item.label.length * 10 + 32);
-      const pillHeight = 36;
+      // Comfortably sized pill width accommodating 18x18 logo + text + padding
+      const pillWidth = Math.max(114, item.label.length * 9.5 + 52);
+      const pillHeight = 38;
       const slotX = (width / (SKILL_ITEMS.length + 1)) * (index + 1);
       const jitter = (Math.random() - 0.5) * 40;
-      const startX = Math.min(width - 60, Math.max(60, slotX + jitter));
-      const startY = -40 - index * 36;
+      const startX = Math.min(width - 70, Math.max(70, slotX + jitter));
+      const startY = -40 - index * 38;
 
       const body = Bodies.rectangle(startX, startY, pillWidth, pillHeight, {
-        chamfer: { radius: 18 },
+        chamfer: { radius: 19 },
         restitution: 0.65,
         friction: 0.15,
         frictionAir: 0.012,
@@ -270,11 +280,9 @@ export function PhysicsPills({ className }: { className?: string }) {
     canvas.addEventListener("pointerup", onPointerUp);
     canvas.addEventListener("pointercancel", onPointerUp);
 
-    // Canvas typography drawing
+    // Canvas typography & Logo drawing
     Events.on(render, "afterRender", () => {
       const ctx = render.context;
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
       ctx.font = "600 12px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace";
 
       for (const body of pillBodies) {
@@ -282,21 +290,34 @@ export function PhysicsPills({ className }: { className?: string }) {
         const angle = body.angle;
         const meta = body as unknown as { labelText?: string; category?: string };
         const text = meta.labelText || "";
-        const dotColor = dotColors[meta.category || "core"] || "#10B981";
+        const icon = iconMap[text];
 
         ctx.save();
         ctx.translate(x, y);
         ctx.rotate(angle);
 
-        // Dot indicator
-        ctx.fillStyle = dotColor;
-        ctx.beginPath();
-        ctx.arc(-((text.length * 7) / 2) - 6, 0, 2.5, 0, 2 * Math.PI);
-        ctx.fill();
+        const iconSize = 18;
+        const textWidth = ctx.measureText(text).width;
+        const spacing = 8;
+        const totalContentWidth = iconSize + spacing + textWidth;
+        const startX = -totalContentWidth / 2;
 
-        // Label
+        // Draw authentic technology SVG logo
+        if (icon && icon.complete && icon.naturalWidth > 0) {
+          ctx.drawImage(icon, startX, -iconSize / 2, iconSize, iconSize);
+        } else {
+          // Fallback colored dot
+          ctx.fillStyle = dotColors[meta.category || "core"] || "#10B981";
+          ctx.beginPath();
+          ctx.arc(startX + 8, 0, 3, 0, 2 * Math.PI);
+          ctx.fill();
+        }
+
+        // Draw crisp label text
         ctx.fillStyle = "#111827";
-        ctx.fillText(text, 4, 0);
+        ctx.textAlign = "left";
+        ctx.textBaseline = "middle";
+        ctx.fillText(text, startX + iconSize + spacing, 0.5);
 
         ctx.restore();
       }
