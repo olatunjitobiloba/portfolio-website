@@ -159,10 +159,31 @@ export function CommandPalette({ open: openProp, setOpen: setOpenProp }: Command
             <button
               type="button"
               onClick={() => setIsOpen(false)}
-              className="text-[10px] font-mono text-ink-muted bg-black/5 hover:bg-black/10 px-1.5 py-0.5 rounded border border-black/5 transition-colors"
+              className="text-[10px] font-mono text-ink-muted bg-black/5 hover:bg-black/10 px-1.5 py-0.5 rounded border border-black/5 transition-colors cursor-pointer"
             >
               ESC
             </button>
+          </div>
+
+          {/* Quick Suggestion Pills Strip */}
+          <div className="px-4 py-2 bg-canvas/60 border-b border-black/[0.04] flex items-center gap-1.5 overflow-x-auto text-[11px] font-mono text-ink-muted">
+            <span className="text-[10px] uppercase font-semibold text-ink-muted shrink-0">Popular:</span>
+            {["Loan Prediction", "MLOps", "FocusPilot", "CGPA 4.83", "CV"].map((tag) => (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => {
+                  const input = document.querySelector<HTMLInputElement>("[cmdk-input]");
+                  if (input) {
+                    input.value = tag;
+                    input.dispatchEvent(new Event("input", { bubbles: true }));
+                  }
+                }}
+                className="px-2 py-0.5 rounded-full bg-white hover:bg-black/5 text-ink-secondary hover:text-ink-primary border border-black/[0.06] transition-colors shrink-0 cursor-pointer"
+              >
+                {tag}
+              </button>
+            ))}
           </div>
 
           {copiedAnswer && (

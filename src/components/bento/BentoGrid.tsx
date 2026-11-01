@@ -5,6 +5,7 @@ import { ArrowUpRight, Github, Sparkles } from "lucide-react";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
 import { InferencePlayground } from "@/components/bento/InferencePlayground";
+import { BorderBeam } from "@/components/ui/BorderBeam";
 import { cn } from "@/lib/utils";
 
 interface BentoGridProps {
@@ -77,16 +78,17 @@ export function BentoGrid({ className }: BentoGridProps) {
         {/* =========================================================================
             CARD 1 (md:col-span-2): Loan Prediction API (FLAGSHIP / STAR SYSTEM)
             ========================================================================= */}
-        <div className="md:col-span-2 relative p-[1.5px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(16,185,129,0.1)] transition-shadow duration-300">
-          {/* Animated Moving Radiant Gradient Border (ReactBits & Abraham Adelodun style) */}
-          <div
-            className="absolute -inset-[100%] opacity-65 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none animate-[spin_8s_linear_infinite]"
-            style={{
-              background:
-                "conic-gradient(from 0deg, transparent 0 240deg, #10B981 290deg, #6366F1 330deg, #F59E0B 350deg, transparent 360deg)",
-            }}
+        <div className="md:col-span-2 relative p-[2px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgba(16,185,129,0.16)] transition-all duration-300">
+          {/* 21st.dev Laser Border Beam moving around perimeter */}
+          <BorderBeam
+            size={320}
+            duration={6.5}
+            colorFrom="#10B981"
+            colorTo="#6366F1"
+            borderWidth={2}
           />
-          <article className="relative h-full w-full bg-white rounded-[15px] p-6 flex flex-col justify-between border border-black/[0.04]">
+
+          <article className="relative h-full w-full bg-white rounded-[14px] p-6 flex flex-col justify-between border border-black/[0.06]">
             <div className="space-y-4">
               {/* Header: Category + Star Badge + Status Badge */}
               <div className="flex items-center justify-between gap-2 flex-wrap">

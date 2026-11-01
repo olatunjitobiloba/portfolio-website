@@ -5,7 +5,7 @@ import { Navbar } from "@/components/nav/Navbar";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { Footer } from "@/components/nav/Footer";
 import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { AmbientBackground } from "@/components/ui/AmbientBackground";
+import { InteractiveBackground } from "@/components/ui/InteractiveBackground";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -41,7 +41,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="min-h-screen bg-canvas text-ink-primary font-sans antialiased selection:bg-black selection:text-white relative">
-        <AmbientBackground />
+        <InteractiveBackground />
         <SmoothScroll>
           <Navbar />
           <CommandPalette />

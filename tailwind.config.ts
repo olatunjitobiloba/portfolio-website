@@ -46,6 +46,21 @@ const config: Config = {
         serif: ["var(--font-instrument-serif)", "serif"],
         mono: ["var(--font-geist-mono)", "monospace"],
       },
+      keyframes: {
+        "border-beam": {
+          "100%": {
+            "offset-distance": "100%",
+          },
+        },
+        shimmer: {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+      },
+      animation: {
+        "border-beam": "border-beam calc(var(--duration)*1s) infinite linear",
+        shimmer: "shimmer 8s ease infinite",
+      },
     },
   },
   plugins: [],

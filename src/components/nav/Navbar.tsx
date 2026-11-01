@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Download } from "lucide-react";
+import { AnimatedSearchTrigger } from "@/components/nav/AnimatedSearchTrigger";
 
 export interface NavbarProps {
   onOpenCommand?: () => void;
@@ -30,7 +31,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
     <header className="fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none">
       <nav
         aria-label="Primary navigation"
-        className="pointer-events-auto backdrop-blur-md bg-white/80 border border-black/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.04)] rounded-full px-4 py-2 flex items-center justify-between w-full max-w-xl gap-2 sm:gap-4"
+        className="pointer-events-auto backdrop-blur-md bg-white/85 border border-black/[0.08] shadow-[0_2px_16px_rgba(0,0,0,0.05)] rounded-full px-3 sm:px-4 py-2 flex items-center justify-between w-full max-w-2xl gap-2 sm:gap-3"
       >
         <Link
           href="/"
@@ -68,17 +69,7 @@ export function Navbar({ onOpenCommand }: NavbarProps) {
           </a>
         </div>
 
-        <button
-          type="button"
-          onClick={handleOpenCommand}
-          aria-label="Open command palette"
-          className="shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-black/20 rounded cursor-pointer group"
-        >
-          <kbd className="text-[11px] font-mono bg-black/5 hover:bg-black/10 px-2 py-0.5 rounded border border-black/10 text-ink-secondary flex items-center gap-1.5 transition-colors">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span>⌘K</span>
-          </kbd>
-        </button>
+        <AnimatedSearchTrigger onClick={handleOpenCommand} />
       </nav>
     </header>
   );
