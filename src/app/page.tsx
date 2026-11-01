@@ -6,7 +6,6 @@ import { ProofStrip } from "@/components/ui/ProofStrip";
 import { BentoGrid } from "@/components/bento/BentoGrid";
 import { LagosClock } from "@/components/ui/LagosClock";
 import { TiltCard } from "@/components/ui/TiltCard";
-import { PhysicsPills } from "@/components/ui/PhysicsPills";
 
 export default function HomePage() {
   return (
@@ -89,25 +88,6 @@ export default function HomePage() {
           </h2>
         </div>
         <BentoGrid />
-      </section>
-
-      {/* Interactive Physics Stack Section */}
-      <section className="space-y-4" aria-labelledby="physics-heading">
-        <div className="space-y-1">
-          <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">
-            Interactive Stack
-          </p>
-          <h2
-            id="physics-heading"
-            className="text-2xl sm:text-3xl font-serif text-ink-primary tracking-tight"
-          >
-            Engineering Arsenal in Motion
-          </h2>
-          <p className="text-sm text-ink-secondary">
-            Drag, fling, and collide the core tools and frameworks I use to build production systems.
-          </p>
-        </div>
-        <PhysicsPills />
       </section>
 
       {/* Quick Explore Section */}
