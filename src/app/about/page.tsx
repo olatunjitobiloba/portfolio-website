@@ -5,7 +5,7 @@ import {
   leadershipExperience,
   education,
 } from "@/data/experience";
-import { skillCategories } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import { GraduationCap, Award, ArrowRight, CheckCircle2 } from "lucide-react";
 import { TiltCard } from "@/components/ui/TiltCard";
 
@@ -242,41 +242,90 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Technical Skills */}
+      {/* Static Stack & Core Technologies */}
       <section className="space-y-6" aria-labelledby="skills-heading">
         <div className="space-y-1">
           <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">
-            Proficiencies
+            Technical Arsenal
           </p>
           <h2
             id="skills-heading"
             className="text-xl sm:text-2xl font-serif text-ink-primary tracking-tight"
           >
-            Technical Stack
+            Static Stack &amp; Core Tools
           </h2>
+          <p className="text-xs text-ink-secondary">
+            Production frameworks, libraries, and infrastructure categorized by system domain.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          {skillCategories.map((group) => (
-            <div
-              key={group.category}
-              className="rounded-2xl border border-black/[0.08] bg-white p-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)] space-y-3"
-            >
-              <h3 className="text-xs font-mono uppercase tracking-wider text-ink-primary font-semibold border-b border-black/[0.06] pb-2">
-                {group.category}
-              </h3>
-              <div className="flex flex-wrap gap-1.5">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="text-xs font-mono text-ink-secondary bg-black/[0.03] px-2 py-0.5 rounded border border-black/[0.06]"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
+        <div className="rounded-2xl border border-black/[0.08] bg-white p-5 sm:p-7 shadow-[0_2px_12px_rgba(0,0,0,0.02)] space-y-6">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-black/[0.06] pb-4">
+            <span className="text-xs font-mono font-semibold text-ink-primary tracking-tight">
+              Production Stack (Static Reference)
+            </span>
+            <div className="flex flex-wrap items-center gap-3 text-[11px] font-mono text-ink-muted">
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                <span>ML &amp; Data</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-purple-500" />
+                <span>Backend &amp; APIs</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-sky-500" />
+                <span>Infra &amp; MLOps</span>
+              </span>
+              <span className="inline-flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-zinc-900" />
+                <span>Core</span>
+              </span>
             </div>
-          ))}
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {skillGroups.map((group) => (
+              <div
+                key={group.category}
+                className="rounded-xl border border-black/[0.06] bg-canvas/40 p-4 space-y-3"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className="w-2.5 h-2.5 rounded-full shrink-0"
+                      style={{ backgroundColor: group.dotColor }}
+                    />
+                    <h3 className="text-xs font-mono uppercase tracking-wider text-ink-primary font-semibold">
+                      {group.category}
+                    </h3>
+                  </div>
+                  <span className="text-[11px] font-mono text-ink-muted">
+                    {group.skills.length} tools
+                  </span>
+                </div>
+
+                <p className="text-xs text-ink-secondary leading-relaxed">
+                  {group.description}
+                </p>
+
+                <div className="flex flex-wrap gap-2 pt-1">
+                  {group.skills.map((skill) => (
+                    <div
+                      key={skill}
+                      className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-black/[0.08] shadow-[0_1px_2px_rgba(0,0,0,0.02)] text-xs font-mono text-ink-primary hover:border-black/20 hover:scale-[1.02] transition-all"
+                    >
+                      <span
+                        className="w-1.5 h-1.5 rounded-full shrink-0"
+                        style={{ backgroundColor: group.dotColor }}
+                      />
+                      <span>{skill}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     </div>

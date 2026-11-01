@@ -1,33 +1,56 @@
-import { SkillCategory } from "@/types";
+export interface SkillGroup {
+  category: string;
+  dotColor: string;
+  description: string;
+  skills: string[];
+}
 
-export const skillCategories: SkillCategory[] = [
+export const skillGroups: SkillGroup[] = [
   {
-    category: "AI & ML",
+    category: "Machine Learning & Data",
+    dotColor: "#10B981", // Emerald
+    description: "Statistical modeling, deep learning architectures, and data engineering.",
     skills: [
+      "PyTorch",
       "scikit-learn",
       "Pandas",
       "NumPy",
-      "PyTorch",
       "Federated Learning",
       "Model Evaluation",
       "Data Pipelines",
     ],
   },
   {
-    category: "Serving & MLOps",
+    category: "Backend & Inference APIs",
+    dotColor: "#8B5CF6", // Purple
+    description: "High-throughput serving APIs, validation schemas, and database layers.",
     skills: [
       "FastAPI",
       "Flask",
-      "Docker",
-      "GitHub Actions",
-      "pytest",
-      "SQLAlchemy",
-      "Supabase",
       "PostgreSQL",
+      "SQLAlchemy",
+      "pytest",
+      "REST APIs",
+      "Supabase",
     ],
   },
   {
-    category: "Product & Web",
+    category: "Infrastructure & MLOps",
+    dotColor: "#0EA5E9", // Sky Blue
+    description: "Containerization, automated test pipelines, and continuous deployment.",
+    skills: [
+      "Docker",
+      "GitHub Actions",
+      "MLOps Pipelines",
+      "CI/CD Automation",
+      "Render",
+      "Linux Administration",
+    ],
+  },
+  {
+    category: "Core Languages & Frontend",
+    dotColor: "#111827", // Dark
+    description: "Systems programming, client applications, and reactive web interfaces.",
     skills: [
       "Python",
       "TypeScript",
@@ -35,10 +58,12 @@ export const skillCategories: SkillCategory[] = [
       "React",
       "Next.js",
       "Tailwind CSS",
-      "REST APIs",
       "Chrome Extensions",
     ],
   },
 ];
 
-export const skills = skillCategories;
+export const skillCategories = skillGroups.map((g) => ({
+  category: g.category,
+  skills: g.skills,
+}));
