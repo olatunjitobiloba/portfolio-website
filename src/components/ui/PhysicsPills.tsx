@@ -42,13 +42,12 @@ export function PhysicsPills({ className }: { className?: string }) {
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
-        // Only trigger drop when at least 40% of the box is in view so the user visibly sees the cascade
         if (entry.isIntersecting) {
           setHasTriggeredDrop(true);
         }
       },
       {
-        threshold: 0.4,
+        threshold: 0.35,
       }
     );
 
@@ -72,13 +71,12 @@ export function PhysicsPills({ className }: { className?: string }) {
       Runner,
       Bodies,
       Composite,
-      Mouse,
-      MouseConstraint,
+      Constraint,
       Events,
     } = Matter;
 
     const container = sceneRef.current;
-    const width = container.clientWidth || 700;
+    const width = container.clientWidth || 800;
     const height = 280;
 
     // Create Engine with natural gravity
@@ -87,7 +85,7 @@ export function PhysicsPills({ className }: { className?: string }) {
     });
     engineRef.current = engine;
 
-    // Create Canvas Renderer
+    // Create Canvas Renderer (1:1 coordinate space for 100% pointer accuracy)
     const render = Render.create({
       element: container,
       engine: engine,
@@ -96,7 +94,7 @@ export function PhysicsPills({ className }: { className?: string }) {
         height,
         wireframes: false,
         background: "transparent",
-        pixelRatio: typeof window !== "undefined" ? window.devicePixelRatio : 1,
+        pixelRatio: 1,
       },
     });
 
@@ -112,7 +110,7 @@ export function PhysicsPills({ className }: { className?: string }) {
       render: { visible: false },
     };
 
-    const wallThickness = 80;
+    const wallThickness = 100;
     const ground = Bodies.rectangle(
       width / 2,
       height + wallThickness / 2 - 4,
@@ -147,13 +145,11 @@ export function PhysicsPills({ className }: { className?: string }) {
 
     // Staggered cascade from above view
     const pillBodies: Matter.Body[] = SKILL_ITEMS.map((item, index) => {
-      const pillWidth = Math.max(92, item.label.length * 10 + 30);
+      const pillWidth = Math.max(94, item.label.length * 10 + 32);
       const pillHeight = 36;
-      // Stagger horizontally
       const slotX = (width / (SKILL_ITEMS.length + 1)) * (index + 1);
       const jitter = (Math.random() - 0.5) * 40;
       const startX = Math.min(width - 60, Math.max(60, slotX + jitter));
-      // Stagger vertical drop height: drops visibly from the top with slight delay
       const startY = -40 - index * 36;
 
       const body = Bodies.rectangle(startX, startY, pillWidth, pillHeight, {
@@ -176,18 +172,103 @@ export function PhysicsPills({ className }: { className?: string }) {
 
     Composite.add(engine.world, pillBodies);
 
-    // Mouse interactivity (grab and fling pills)
-    const mouse = Mouse.create(render.canvas);
-    const mouseConstraint = MouseConstraint.create(engine, {
-      mouse: mouse,
-      constraint: {
-        stiffness: 0.2,
-        render: { visible: false },
-      },
-    });
+    // =========================================================================
+    // ROCK-SOLID POINTER INTERACTIVITY (DRAG & FLING PILLS)
+    // Directly maps getBoundingClientRect to canvas coordinates, bypassing
+    // browser zoom, Windows DPI scaling, and smooth scroll offsets.
+    // =========================================================================
+    const canvas = render.canvas;
+    canvas.style.touchAction = "none";
+    canvas.style.userSelect = "none";
 
-    Composite.add(engine.world, mouseConstraint);
-    render.mouse = mouse;
+    let activeConstraint: Matter.Constraint | null = null;
+    let draggedBody: Matter.Body | null = null;
+    let lastPos = { x: 0, y: 0 };
+    let velocity = { x: 0, y: 0 };
+
+    const getCanvasCoords = (e: PointerEvent) => {
+      const rect = canvas.getBoundingClientRect();
+      const scaleX = width / rect.width;
+      const scaleY = height / rect.height;
+      return {
+        x: (e.clientX - rect.left) * scaleX,
+        y: (e.clientY - rect.top) * scaleY,
+      };
+    };
+
+    const onPointerDown = (e: PointerEvent) => {
+      if (e.button !== 0 && e.pointerType === "mouse") return;
+      const pos = getCanvasCoords(e);
+
+      // Find pill directly under pointer or within grab radius
+      const clicked = Matter.Query.point(pillBodies, pos);
+      if (clicked.length > 0) {
+        const target = clicked[0];
+        draggedBody = target;
+        lastPos = pos;
+        velocity = { x: 0, y: 0 };
+
+        Matter.Sleeping.set(target, false);
+
+        activeConstraint = Constraint.create({
+          pointA: { x: pos.x, y: pos.y },
+          bodyB: target,
+          pointB: { x: pos.x - target.position.x, y: pos.y - target.position.y },
+          stiffness: 0.9,
+          damping: 0.05,
+          render: { visible: false },
+        });
+
+        Composite.add(engine.world, activeConstraint);
+        canvas.setPointerCapture(e.pointerId);
+        canvas.style.cursor = "grabbing";
+      }
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      const pos = getCanvasCoords(e);
+
+      if (activeConstraint && draggedBody) {
+        velocity = {
+          x: pos.x - lastPos.x,
+          y: pos.y - lastPos.y,
+        };
+        lastPos = pos;
+        activeConstraint.pointA = { x: pos.x, y: pos.y };
+        Matter.Sleeping.set(draggedBody, false);
+      } else {
+        // Dynamic hover cursor
+        const hovered = Matter.Query.point(pillBodies, pos);
+        canvas.style.cursor = hovered.length > 0 ? "grab" : "default";
+      }
+    };
+
+    const onPointerUp = (e: PointerEvent) => {
+      if (activeConstraint) {
+        Composite.remove(engine.world, activeConstraint);
+        activeConstraint = null;
+      }
+      if (draggedBody) {
+        // Impart fluid fling velocity on release
+        Matter.Body.setVelocity(draggedBody, {
+          x: Math.max(-25, Math.min(25, velocity.x * 0.9)),
+          y: Math.max(-25, Math.min(25, velocity.y * 0.9)),
+        });
+        Matter.Sleeping.set(draggedBody, false);
+        draggedBody = null;
+      }
+      try {
+        if (canvas.hasPointerCapture(e.pointerId)) {
+          canvas.releasePointerCapture(e.pointerId);
+        }
+      } catch {}
+      canvas.style.cursor = "default";
+    };
+
+    canvas.addEventListener("pointerdown", onPointerDown);
+    canvas.addEventListener("pointermove", onPointerMove);
+    canvas.addEventListener("pointerup", onPointerUp);
+    canvas.addEventListener("pointercancel", onPointerUp);
 
     // Canvas typography drawing
     Events.on(render, "afterRender", () => {
@@ -223,6 +304,10 @@ export function PhysicsPills({ className }: { className?: string }) {
 
     // Cleanup
     return () => {
+      canvas.removeEventListener("pointerdown", onPointerDown);
+      canvas.removeEventListener("pointermove", onPointerMove);
+      canvas.removeEventListener("pointerup", onPointerUp);
+      canvas.removeEventListener("pointercancel", onPointerUp);
       Render.stop(render);
       Runner.stop(runner);
       Composite.clear(engine.world, false);
@@ -239,7 +324,7 @@ export function PhysicsPills({ className }: { className?: string }) {
         className
       )}
     >
-      {/* Clean Header Bar: No "(Matter.js)" or "Live Simulation" labels, just title and "Start over" */}
+      {/* Clean Header Bar: title and "Start over" */}
       <div className="flex items-center justify-between pb-3 border-b border-black/[0.06] text-xs font-mono">
         <span className="font-semibold text-ink-primary tracking-tight">
           Interactive Stack
@@ -258,7 +343,7 @@ export function PhysicsPills({ className }: { className?: string }) {
       {/* Canvas Area */}
       <div
         ref={sceneRef}
-        className="w-full h-[280px] cursor-grab active:cursor-grabbing select-none relative"
+        className="w-full h-[280px] select-none relative overflow-hidden"
       >
         {!hasTriggeredDrop && (
           <div className="absolute inset-0 flex items-center justify-center text-xs font-mono text-ink-muted">
@@ -271,4 +356,3 @@ export function PhysicsPills({ className }: { className?: string }) {
     </div>
   );
 }
-
