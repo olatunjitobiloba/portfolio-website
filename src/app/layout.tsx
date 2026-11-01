@@ -4,6 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/nav/Navbar";
 import { CommandPalette } from "@/components/command/CommandPalette";
 import { Footer } from "@/components/nav/Footer";
+import { SmoothScroll } from "@/components/providers/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,10 +40,12 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${instrumentSerif.variable}`}
     >
       <body className="min-h-screen bg-canvas text-ink-primary font-sans antialiased selection:bg-black selection:text-white">
-        <Navbar />
-        <CommandPalette />
-        <main className="min-h-screen pt-24 pb-16">{children}</main>
-        <Footer />
+        <SmoothScroll>
+          <Navbar />
+          <CommandPalette />
+          <main className="min-h-screen pt-24 pb-16">{children}</main>
+          <Footer />
+        </SmoothScroll>
       </body>
     </html>
   );
