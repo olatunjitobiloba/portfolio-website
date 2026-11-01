@@ -6,29 +6,29 @@ import { BookCover } from "@/components/ui/BookCover";
 export const metadata: Metadata = {
   title: "Reading List & Notes | Oluwatobiloba Olatunji",
   description:
-    "Books on engineering craft, distributed systems, spiritual authority, and compounding personal discipline.",
+    "Books that shaped how I think, build, and live. Notes and takeaways on distributed systems, spiritual conviction, communication, and execution discipline.",
 };
 
 export default function ReadsPage() {
   return (
-    <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-8 space-y-10">
       {/* Header */}
       <header className="space-y-3 pt-4">
         <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">
           Reading List
         </p>
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-serif text-ink-primary tracking-tight">
-          Books &amp; System Takeaways
+          Books &amp; Takeaways
         </h1>
         <p className="text-base sm:text-lg text-ink-secondary leading-relaxed max-w-2xl">
-          Core reading in distributed systems, high-stakes communication, spiritual authority, and execution discipline.
+          Books that shaped how I think, build, and live. Notes and takeaways from what I have read.
         </p>
       </header>
 
       {/* Book Grid */}
       <section
         aria-label="Books and takeaways"
-        className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+        className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-5"
       >
         {reads.map((book) => (
           <article

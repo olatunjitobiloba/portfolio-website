@@ -10,7 +10,7 @@ import { PhysicsPills } from "@/components/ui/PhysicsPills";
 
 export default function HomePage() {
   return (
-    <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">
+    <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-8 space-y-20">
       {/* Hero Section */}
       <section className="pt-4 sm:pt-6">
         <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">

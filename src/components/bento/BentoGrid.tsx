@@ -47,13 +47,13 @@ export function BentoGrid({ className }: BentoGridProps) {
 
   const focusPilotProject = projects.find((p) => p.id === "focuspilot") || {
     id: "focuspilot",
-    title: "FocusPilot (OS v2.4)",
+    title: "FocusPilot",
     category: "AI Productivity OS & Extension",
     description:
-      "AI-powered behavioral productivity operating system and Chrome extension that learns your cognitive fingerprint, predicts procrastination in real-time, and adaptively protects deep flow state.",
+      "AI-powered productivity operating system and Chrome extension that detects distraction patterns in real-time, features adaptive focus flow sessions, and syncs telemetry to Supabase.",
     status: "Live" as const,
     image: "/images/focuspilot.png",
-    metrics: "Cognitive Fingerprint ML · Real-Time Telemetry",
+    metrics: "Real-time behavioral signal collection · 49 tests passing",
     tags: ["FastAPI", "React", "Chrome Extension", "Supabase", "Tailwind CSS"],
     links: {
       live: "https://focuspilot.vercel.app",

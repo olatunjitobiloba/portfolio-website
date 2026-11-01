@@ -25,7 +25,7 @@ const processSteps = [
 
 export default function AboutPage() {
   return (
-    <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+    <div className="max-w-5xl xl:max-w-6xl 2xl:max-w-[1300px] mx-auto px-4 sm:px-6 lg:px-10 py-8 space-y-12">
       {/* Header */}
       <header className="space-y-4 pt-4">
         <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">

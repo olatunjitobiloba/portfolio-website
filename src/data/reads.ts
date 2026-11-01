@@ -7,7 +7,7 @@ export const reads: Book[] = [
     author: "Martin Kleppmann",
     cover: "/reads/ddia.jpg",
     takeaway:
-      "Reliability, scalability, and maintainability in distributed systems. Deep dives into replication, partitioning, transactions, and consensus.",
+      "Reliability is not an accident. In distributed systems, expect hardware to fail, networks to lag, and data to arrive out of order. The real engineering problem is managing state when components crash.",
     status: "Reading",
   },
   {
@@ -16,7 +16,7 @@ export const reads: Book[] = [
     author: "Ryan Holiday",
     cover: "/reads/obstacle.jpg",
     takeaway:
-      "Stoic philosophy applied to high-stakes execution. The obstacle in your path is not an impediment; it is the path forward.",
+      "Complaining changes nothing. Focus entirely on what you can control, and treat every roadblock as the exact practice you need.",
     status: "Read",
   },
   {
@@ -25,7 +25,7 @@ export const reads: Book[] = [
     author: "Bishop David Oyedepo",
     cover: "/reads/satan get lost.jpg",
     takeaway:
-      "Spiritual authority, kingdom dominion, and bold conviction in the face of spiritual opposition.",
+      "Spiritual authority is active, not passive. You do not negotiate with opposition; you take bold authority over it.",
     status: "Read",
   },
   {
@@ -34,7 +34,7 @@ export const reads: Book[] = [
     author: "Bishop David Oyedepo",
     cover: "/reads/law-of-faith.jpg",
     takeaway:
-      "The exact operational mechanics of biblical faith; converting spiritual realities into tangible physical victories.",
+      "Faith is not wishful thinking or emotion. It is a precise spiritual law that produces results only when backed by deliberate action.",
     status: "Read",
   },
   {
@@ -43,7 +43,7 @@ export const reads: Book[] = [
     author: "Bishop David Oyedepo",
     cover: "/reads/success-strategies.jpg",
     takeaway:
-      "Systematic diligence, divine wisdom, mental discipline, and proven principles for enduring excellence.",
+      "Diligence and quiet preparation beat raw talent every time. Sustainable excellence comes from disciplined daily routines.",
     status: "Read",
   },
   {
@@ -52,7 +52,7 @@ export const reads: Book[] = [
     author: "Bishop David Oyedepo",
     cover: "/reads/led-by-spirit.jpg",
     takeaway:
-      "Cultivating spiritual discernment, inner peace, and divine direction to navigate life-defining choices.",
+      "Direction comes from peace in your spirit, not noise in your head. Learning to recognize the quiet inner witness prevents costly mistakes.",
     status: "Read",
   },
   {
@@ -61,7 +61,7 @@ export const reads: Book[] = [
     author: "Dr. Henry Cloud & Dr. John Townsend",
     cover: "/reads/boundaries.jpg",
     takeaway:
-      "Taking ownership of personal responsibility, protecting mental bandwidth, and establishing healthy emotional and professional boundaries.",
+      "You cannot protect your focus if you cannot say no. Taking ownership of your life means knowing what is your responsibility and what belongs to others.",
     status: "Read",
   },
   {
@@ -70,7 +70,7 @@ export const reads: Book[] = [
     author: "Jon Acuff",
     cover: "/reads/finish.jpg",
     takeaway:
-      "Destroying perfectionism, cutting goals in half, and mastering the discipline of following through to completion.",
+      "Perfectionism is just fear disguised as high standards. Cut your initial goal in half, drop arbitrary rules, and cross the finish line.",
     status: "Read",
   },
   {
@@ -79,7 +79,7 @@ export const reads: Book[] = [
     author: "Kerry Patterson, Joseph Grenny, Ron McMillan, Al Switzler",
     cover: "/reads/crucial-conversations.jpg",
     takeaway:
-      "Navigating high-stakes dialogue with emotional clarity, mutual respect, and psychological safety when opinions diverge.",
+      "When conversations get heated, make the other person feel safe first. Most arguments happen because people feel attacked, not because they disagree on the facts.",
     status: "Read",
   },
   {
@@ -88,7 +88,7 @@ export const reads: Book[] = [
     author: "Kora",
     cover: "/reads/kora-wallets.jpg",
     takeaway:
-      "Ledger architecture, transaction idempotency, fraud prevention, and regulatory compliance for African digital payment infrastructure.",
+      "Building payment systems in Africa requires zero assumptions. Make every ledger transaction idempotent, reconcile balances continuously, and never let money move without cryptographic verification.",
     status: "Read",
   },
 ];

@@ -49,7 +49,7 @@ export default function WorkPage() {
   }, [activeTab]);
 
   return (
-    <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
+    <div className="max-w-6xl xl:max-w-7xl 2xl:max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-10 py-8 space-y-10">
       {/* Header */}
       <header className="space-y-3 pt-4">
         <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">
