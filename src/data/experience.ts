@@ -31,7 +31,7 @@ export const leadershipExperience: ExperienceItem[] = [
   {
     role: "AI/ML Co-Lead",
     organization: "GDG on Campus Covenant University",
-    period: "2025 - Present",
+    period: "2026 - Present",
     description:
       "Co-leading AI and machine learning tracks, organizing developer workshops, and mentoring engineering students in building and deploying ML APIs.",
     tags: ["AI/ML", "Developer Community", "Workshops", "Mentorship"],
