@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 export default function ReadsPage() {
   return (
-    <div className="max-w-3xl mx-auto px-4 sm:px-6 py-8 space-y-10">
+    <div className="max-w-4xl lg:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-10">
       {/* Header */}
       <header className="space-y-3 pt-4">
         <p className="text-xs font-mono uppercase tracking-wider text-ink-muted">

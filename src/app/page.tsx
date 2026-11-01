@@ -9,7 +9,7 @@ import { TiltCard } from "@/components/ui/TiltCard";
 
 export default function HomePage() {
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-16">
+    <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-20">
       {/* Hero Section */}
       <section className="pt-4 sm:pt-6">
         <div className="flex flex-col-reverse md:flex-row items-start md:items-center justify-between gap-8 md:gap-12">

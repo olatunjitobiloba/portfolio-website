@@ -12,7 +12,7 @@ export const projects: Project[] = [
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
     image: "/images/loan-api.png",
     links: {
-      github: "https://github.com/olatunjitobiloba",
+      github: "https://github.com/olatunjitobiloba/loan-predictor-api",
       live: "https://loan-predictor-api-91xu.onrender.com/app",
     },
     featuredInBento: true,

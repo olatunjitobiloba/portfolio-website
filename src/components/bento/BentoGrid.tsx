@@ -2,6 +2,7 @@
 
 import React from "react";
 import { ArrowUpRight, Github, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 import { projects } from "@/data/projects";
 import { Badge } from "@/components/ui/Badge";
 import { InferencePlayground } from "@/components/bento/InferencePlayground";
@@ -78,7 +79,13 @@ export function BentoGrid({ className }: BentoGridProps) {
         {/* =========================================================================
             CARD 1 (md:col-span-2): Loan Prediction API (FLAGSHIP / STAR SYSTEM)
             ========================================================================= */}
-        <div className="md:col-span-2 relative p-[2px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgba(16,185,129,0.16)] transition-all duration-300">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-2 relative p-[2px] rounded-2xl overflow-hidden group shadow-[0_4px_24px_rgba(0,0,0,0.04)] hover:shadow-[0_12px_36px_rgba(16,185,129,0.16)] transition-all duration-300"
+        >
           {/* 21st.dev Laser Border Beam moving around perimeter */}
           <BorderBeam
             size={320}
@@ -145,10 +152,10 @@ export function BentoGrid({ className }: BentoGridProps) {
                 href={loanProject.links.live}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-primary bg-black/[0.04] hover:bg-black/[0.08] border border-black/[0.08] transition-colors"
+                className="group/btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-primary bg-black/[0.04] hover:bg-black hover:text-white border border-black/[0.08] transition-all hover:scale-[1.03] active:scale-[0.98]"
               >
                 <span>Live API on Render</span>
-                <ArrowUpRight className="w-3.5 h-3.5" />
+                <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
               </a>
             )}
             {loanProject.links.github && (
@@ -156,20 +163,26 @@ export function BentoGrid({ className }: BentoGridProps) {
                 href={loanProject.links.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-secondary hover:text-ink-primary bg-black/[0.02] hover:bg-black/[0.06] border border-black/[0.06] transition-colors"
+                className="group/git inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-secondary hover:text-ink-primary hover:bg-black/[0.06] border border-black/[0.06] transition-all hover:scale-[1.03] active:scale-[0.98]"
               >
-                <Github className="w-3.5 h-3.5" />
+                <Github className="w-3.5 h-3.5 group-hover/git:rotate-12 transition-transform" />
                 <span>GitHub</span>
               </a>
             )}
           </div>
         </article>
-      </div>
+      </motion.div>
 
         {/* =========================================================================
             CARD 2 (md:col-span-1): MLOps Automated Pipeline
             ========================================================================= */}
-        <article className="md:col-span-1 bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] group">
+        <motion.article
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-1 bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] group"
+        >
           <div className="space-y-4">
             {/* Header: Category + Status Badge */}
             <div className="flex items-center justify-between gap-2">
@@ -223,12 +236,18 @@ export function BentoGrid({ className }: BentoGridProps) {
               </a>
             )}
           </div>
-        </article>
+        </motion.article>
 
         {/* =========================================================================
             CARD 3 (md:col-span-1): FocusPilot
             ========================================================================= */}
-        <article className="md:col-span-1 bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] group">
+        <motion.article
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-1 bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] group"
+        >
           <div className="space-y-4">
             {/* Header: Category + Status Badge */}
             <div className="flex items-center justify-between gap-2">
@@ -293,12 +312,18 @@ export function BentoGrid({ className }: BentoGridProps) {
               </a>
             )}
           </div>
-        </article>
+        </motion.article>
 
         {/* =========================================================================
             CARD 4 (md:col-span-2): FedRec Decentralized Recommender
             ========================================================================= */}
-        <article className="md:col-span-2 bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] group">
+        <motion.article
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-40px" }}
+          transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+          className="md:col-span-2 bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-6 flex flex-col justify-between shadow-[0_1px_3px_rgba(0,0,0,0.02)] group"
+        >
           <div className="space-y-4">
             {/* Header: Category + Status Badge */}
             <div className="flex items-center justify-between gap-2">
@@ -352,7 +377,7 @@ export function BentoGrid({ className }: BentoGridProps) {
               </a>
             )}
           </div>
-        </article>
+        </motion.article>
       </div>
     </section>
   );

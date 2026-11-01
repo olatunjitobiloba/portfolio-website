@@ -3,10 +3,10 @@ import { Mail, Github, Linkedin, MapPin } from "lucide-react";
 export function Footer() {
   return (
     <footer className="border-t border-black/[0.08] bg-canvas mt-20 pt-16 pb-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6">
+      <div className="max-w-5xl lg:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Say hello / CTA block */}
         <div className="rounded-2xl border border-black/[0.08] bg-white p-6 sm:p-8 mb-12 shadow-[0_2px_12px_rgba(0,0,0,0.02)]">
-          <div className="max-w-xl">
+          <div className="max-w-2xl">
             <p className="text-xs font-mono uppercase tracking-wider text-ink-muted mb-2">
               Say hello
             </p>
@@ -16,7 +16,7 @@ export function Footer() {
             <div className="flex flex-wrap items-center gap-2.5 mt-5">
               <a
                 href="mailto:olatunjitobiloba05@gmail.com"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-ink-primary text-white text-xs font-medium hover:bg-black/85 transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-ink-primary text-white text-xs font-medium hover:bg-black/85 transition-all hover:scale-[1.04] active:scale-[0.98] shadow-xs"
               >
                 <Mail className="w-3.5 h-3.5" />
                 <span>Email me</span>
@@ -25,7 +25,7 @@ export function Footer() {
                 href="https://github.com/olatunjitobiloba"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-black/10 bg-white text-ink-primary text-xs font-medium hover:bg-surface-hover transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-black/10 bg-white text-ink-primary text-xs font-medium hover:bg-surface-hover hover:border-black/20 transition-all hover:scale-[1.04] active:scale-[0.98] shadow-xs"
               >
                 <Github className="w-3.5 h-3.5" />
                 <span>GitHub</span>
@@ -34,7 +34,7 @@ export function Footer() {
                 href="https://www.linkedin.com/in/olatunjitobiloba/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border border-black/10 bg-white text-ink-primary text-xs font-medium hover:bg-surface-hover transition-colors"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-black/10 bg-white text-ink-primary text-xs font-medium hover:bg-surface-hover hover:border-black/20 transition-all hover:scale-[1.04] active:scale-[0.98] shadow-xs"
               >
                 <Linkedin className="w-3.5 h-3.5" />
                 <span>LinkedIn</span>

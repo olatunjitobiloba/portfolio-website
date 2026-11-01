@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowUpRight, Github } from "lucide-react";
+import { motion } from "framer-motion";
 import { Project } from "@/types";
 import { Badge } from "@/components/ui/Badge";
 import { cn } from "@/lib/utils";
@@ -17,7 +18,11 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
   const githubUrl = project.links.github;
 
   return (
-    <article
+    <motion.article
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
       className={cn(
         "group bg-white border border-black/[0.08] hover:border-black/20 transition-all duration-200 rounded-2xl p-5 flex flex-col justify-between gap-5 shadow-[0_1px_3px_rgba(0,0,0,0.02)]",
         className
@@ -104,10 +109,10 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               href={liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-primary bg-black/[0.04] hover:bg-black/[0.08] border border-black/[0.08] transition-colors"
+              className="group/btn inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-primary bg-black/[0.04] hover:bg-black hover:text-white border border-black/[0.08] transition-all hover:scale-[1.03] active:scale-[0.98]"
             >
               <span>{project.links.live ? "Live Link" : "Demo"}</span>
-              <ArrowUpRight className="w-3.5 h-3.5" />
+              <ArrowUpRight className="w-3.5 h-3.5 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5 transition-transform" />
             </a>
           )}
           {githubUrl && (
@@ -115,15 +120,15 @@ export function ProjectCard({ project, className }: ProjectCardProps) {
               href={githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-secondary hover:text-ink-primary bg-black/[0.02] hover:bg-black/[0.06] border border-black/[0.06] transition-colors"
+              className="group/git inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-ink-secondary hover:text-ink-primary hover:bg-black/[0.06] border border-black/[0.06] transition-all hover:scale-[1.03] active:scale-[0.98]"
             >
-              <Github className="w-3.5 h-3.5" />
+              <Github className="w-3.5 h-3.5 group-hover/git:rotate-12 transition-transform" />
               <span>GitHub</span>
             </a>
           )}
         </div>
       )}
-    </article>
+    </motion.article>
   );
 }
 
