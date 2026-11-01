@@ -64,3 +64,4 @@ export function AnimatedSearchTrigger({ onClick }: { onClick?: () => void }) {
     </button>
   );
 }
+
