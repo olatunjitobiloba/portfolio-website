@@ -7,7 +7,7 @@ export const reads: Book[] = [
     author: "Martin Kleppmann",
     cover: "/reads/ddia.jpg",
     takeaway:
-      "I learnt that production ML pipelines fail when distributed state is messy—so I design inference services around idempotent writes, clean partition keys, and predictable replication lag.",
+      "I learnt that production ML pipelines fail when distributed state is messy, so I design inference services around idempotent writes, clean partition keys, and predictable replication lag.",
     status: "Reading",
   },
   {
@@ -16,7 +16,7 @@ export const reads: Book[] = [
     author: "Eric Ries",
     cover: "/reads/lean startup.jpg",
     takeaway:
-      "I learnt not to train complex models before verifying demand—shipping a fast baseline API with real telemetry always beats guessing what users want.",
+      "I learnt not to train complex models before verifying demand: shipping a fast baseline API with real telemetry always beats guessing what users want.",
     status: "Read",
   },
   {
@@ -88,7 +88,7 @@ export const reads: Book[] = [
     author: "Robert Kiyosaki",
     cover: "/reads/rich dad poor dad.jpg",
     takeaway:
-      "I learnt to build software assets that generate value repeatedly—like reusable inference APIs and automated CI/CD pipelines—rather than trading raw hours.",
+      "I learnt to build software assets that generate value repeatedly, like reusable inference APIs and automated CI/CD pipelines, rather than trading raw hours.",
     status: "Read",
   },
   {

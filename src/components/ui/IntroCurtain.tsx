@@ -105,7 +105,7 @@ export function IntroCurtain() {
                 </h1>
               </motion.div>
             ) : (
-              // Step 3: Synthesis Lockup — "Build · Ship · Scale" & Oluwatobiloba Olatunji
+              // Step 3: Synthesis Lockup - "Build · Ship · Scale" & Oluwatobiloba Olatunji
               <motion.div
                 key="final-lockup"
                 initial={{ opacity: 0, scale: 0.96, filter: "blur(8px)" }}
