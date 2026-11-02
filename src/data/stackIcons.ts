@@ -49,3 +49,4 @@ export function getStackIconDataUri(name: string): string {
   const svg = STACK_SVGS[name] || STACK_SVGS.Python;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
 }
+

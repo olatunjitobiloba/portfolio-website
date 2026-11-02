@@ -66,9 +66,6 @@ export default function ReadsPage() {
 
               <div className="pt-2 border-t border-black/[0.04]">
                 <p className="text-xs text-ink-secondary leading-relaxed">
-                  <span className="font-mono text-[11px] text-ink-primary font-medium">
-                    Takeaway:{" "}
-                  </span>
                   {book.takeaway}
                 </p>
               </div>
