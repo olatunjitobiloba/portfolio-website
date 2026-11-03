@@ -152,7 +152,7 @@ export function BentoGrid({ className }: BentoGridProps) {
                     alt={loanProject.title}
                     fill
                     className="object-contain"
-                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 760px"
                   />
                 </div>
               </div>
@@ -438,7 +438,7 @@ export function BentoGrid({ className }: BentoGridProps) {
                   alt={fedrecProject.title}
                   fill
                   className="object-contain group-hover:scale-[1.02] transition-transform duration-300"
-                  sizes="(max-width: 1024px) 100vw, 66vw"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 66vw, 760px"
                 />
               </div>
             </div>
