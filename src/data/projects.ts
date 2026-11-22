@@ -6,9 +6,9 @@ export const projects: Project[] = [
     title: "Loan Prediction API (v7.0)",
     category: "ML Inference API & Serving",
     description:
-      "Real-time credit intelligence and autonomous underwriting engine serving Random Forest and ensemble loan qualification decisions with 88.62% accuracy, sub-180ms latency, and 100% pytest coverage.",
+      "Loan approval prediction API with explainable results serving Random Forest loan qualification decisions with 88.62% accuracy and 83% pytest coverage.",
     status: "Live",
-    metrics: "88.62% Accuracy · 100% Pytest · 4-Model Ensemble Suite",
+    metrics: "88.62% Accuracy · 83% Pytest · 4 Models Compared",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
     image: "/images/loan-api.png",
     links: {
@@ -23,9 +23,9 @@ export const projects: Project[] = [
     title: "MLOps Automated Pipeline",
     category: "MLOps & CI/CD",
     description:
-      "Automated end-to-end model evaluation and deployment pipeline with GitHub Actions CI/CD, lint checks, test suites, and Docker containerization.",
-    status: "Production",
-    metrics: "Automated CI/CD · Dockerized · Zero manual deploys",
+      "Automated end-to-end model evaluation and CI pipeline with GitHub Actions CI/CD, lint checks, test suites, and Docker containerization.",
+    status: "Research",
+    metrics: "Automated CI/CD · Dockerized · Pytest Suite",
     tags: ["GitHub Actions", "Docker", "pytest", "MLOps", "Python"],
     image: "/images/mlops.png",
     links: {
@@ -87,9 +87,9 @@ export const projects: Project[] = [
     title: "Heroes Conference '26 Platform",
     category: "High-Concurrency Live Event Platform",
     description:
-      "Live event engagement platform built for 500+ simultaneous attendees with real-time raffle, audience polling, and protected admin controls with 100% uptime.",
+      "Live event engagement platform built for 250+ simultaneous attendees with real-time raffle, audience polling, and protected admin controls.",
     status: "Archived",
-    metrics: "500+ Concurrent Users · Zero Downtime",
+    metrics: "253 Concurrent Users · Real-time Raffle",
     tags: ["React", "Supabase", "WebSockets", "High Concurrency"],
     image: "/images/heroes-conference.png",
     links: {

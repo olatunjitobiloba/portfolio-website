@@ -20,7 +20,7 @@ export function BentoGrid({ className }: BentoGridProps) {
     title: "Loan Prediction API (v7.0)",
     category: "ML Inference API & Serving",
     description:
-      "Real-time credit intelligence and autonomous underwriting engine serving Random Forest and ensemble loan qualification decisions with 88.62% accuracy, sub-180ms latency, and 100% pytest coverage.",
+      "Loan approval prediction API with explainable results serving Random Forest loan qualification decisions with 88.62% accuracy and 83% pytest coverage.",
     status: "Live" as const,
     image: "/images/loan-api.png",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
@@ -35,10 +35,10 @@ export function BentoGrid({ className }: BentoGridProps) {
     title: "MLOps Automated Pipeline",
     category: "MLOps & CI/CD",
     description:
-      "Automated model evaluation and deployment pipeline with GitHub Actions, lint checks, test suites, and Docker containerization.",
-    status: "Production" as const,
+      "Automated model evaluation and CI pipeline with GitHub Actions, lint checks, test suites, and Docker containerization.",
+    status: "Research" as const,
     image: "/images/mlops.png",
-    metrics: "Automated CI/CD · Dockerized",
+    metrics: "Automated CI/CD · Dockerized · Pytest Suite",
     tags: ["GitHub Actions", "Docker", "pytest", "MLOps"],
     links: {
       github: "https://github.com/olatunjitobiloba/MLOps-Pipeline",
@@ -346,7 +346,7 @@ export function BentoGrid({ className }: BentoGridProps) {
             {/* Metric */}
             <div className="font-mono text-xs text-ink-muted bg-canvas px-3 py-2 rounded-xl border border-black/[0.06]">
               <span className="text-ink-primary font-medium">
-                Real-time sync · Active user base
+                Real-time sync · 49 tests passing
               </span>
             </div>
 
@@ -428,7 +428,7 @@ export function BentoGrid({ className }: BentoGridProps) {
                   <span className="w-2 h-2 rounded-full bg-emerald-400/80 inline-block" />
                 </div>
                 <span className="text-[10px] font-mono text-ink-muted truncate max-w-[240px]">
-                  fedrec-research.internal
+                  fedrec-simulation (illustrative)
                 </span>
                 <div className="w-6" />
               </div>

@@ -14,7 +14,7 @@ const STATS: StatItem[] = [
     context: "Inference APIs & Products",
   },
   {
-    value: "500+",
+    value: "250+",
     label: "Concurrent Users Served",
     context: "Heroes Conference '26",
   },
