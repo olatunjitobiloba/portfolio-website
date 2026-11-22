@@ -6,9 +6,9 @@ export const projects: Project[] = [
     title: "Loan Prediction API (v7.0)",
     category: "ML Inference API & Serving",
     description:
-      "Loan approval prediction API with explainable results serving Random Forest loan qualification decisions with 88.62% accuracy and 83% pytest coverage.",
+      "Loan approval prediction API with explainable results serving Random Forest loan qualification decisions with 88.62% accuracy and 31 automated tests passing.",
     status: "Live",
-    metrics: "88.62% Accuracy · 83% Pytest · 4 Models Compared",
+    metrics: "88.62% Accuracy · 31 Tests Passing · 4 Models Compared",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
     image: "/images/loan-api.png",
     links: {

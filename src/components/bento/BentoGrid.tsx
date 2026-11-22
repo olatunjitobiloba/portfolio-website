@@ -20,7 +20,7 @@ export function BentoGrid({ className }: BentoGridProps) {
     title: "Loan Prediction API (v7.0)",
     category: "ML Inference API & Serving",
     description:
-      "Loan approval prediction API with explainable results serving Random Forest loan qualification decisions with 88.62% accuracy and 83% pytest coverage.",
+      "Loan approval prediction API with explainable results serving Random Forest loan qualification decisions with 88.62% accuracy and 31 automated tests passing.",
     status: "Live" as const,
     image: "/images/loan-api.png",
     tags: ["Flask", "scikit-learn", "pytest", "Docker", "Render"],
